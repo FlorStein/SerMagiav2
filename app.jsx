@@ -40,7 +40,7 @@ const SERVICIOS = [
   },
   {
     title: "Lecturas",
-    description: "Lecturas individuales de Tarot enfocadas en claridad, dirección y bienestar.",
+    description: "Lecturas individuales de tarot con enfoque canalizado.",
     bgImage: ASSETS.cielo,
     link: "#lecturas"
   }
