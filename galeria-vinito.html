@@ -228,7 +228,7 @@
         <span>Volver al sitio</span>
       </a>
       <h1 class="mt-6 text-4xl md:text-5xl font-bold drop-shadow-[0_0_18px_rgba(0,0,0,0.6)]">
-        ✨ Galería Vinito y Tarot ✨
+        ✨ Galería Vinito & Tarot ✨
       </h1>
       <p class="mt-3 text-lg md:text-xl text-white/85 max-w-2xl mx-auto">
         Momentos mágicos, copas compartidas y cartas desplegadas en la mesa. Un collage vivo de cada encuentro.
@@ -309,17 +309,25 @@
       return url;
     }
 
+    // Función para limpiar el nombre del archivo (quitar extensión)
+    function cleanFileName(name) {
+      if (!name) return '';
+      // Quitar extensiones comunes de imagen
+      return name.replace(/\.(jpg|jpeg|png|gif|webp|jfif|bmp|svg)$/i, '');
+    }
+
     function createPolaroidElement(image, index, allImages) {
       const figure = document.createElement('figure');
       figure.className = 'polaroid';
 
       const img = document.createElement('img');
       img.src = image.url;
-      img.alt = image.name || ('Foto ' + (index + 1));
+      const cleanName = cleanFileName(image.name);
+      img.alt = cleanName || ('Foto ' + (index + 1));
       img.loading = 'lazy';
 
       const caption = document.createElement('figcaption');
-      caption.textContent = image.name || '';
+      caption.textContent = cleanName || '';
 
       figure.appendChild(img);
       figure.appendChild(caption);
@@ -389,6 +397,9 @@
             return null;
           }).filter(Boolean);
 
+          // Invertir el orden para mostrar las últimas subidas primero
+          images.reverse();
+          
           renderCollage(images);
           return;
         }
