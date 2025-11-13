@@ -280,7 +280,7 @@
     // ]
         // API de Google Apps Script (actualmente no funciona - devuelve HTML en lugar de JSON)
         // Dejá vacío para usar IMAGE_IDS en su lugar
-        const DRIVE_API_URL = 'https://script.google.com/macros/s/AKfycbzXBpIV9QgOP-65z1qqT47m-3LxTKj_9r1Ug3_AD222LsS0iNVehdm8ZQbBprcqC-n1/exec';
+        const DRIVE_API_URL = 'https://script.google.com/macros/s/AKfycbydgCXVICkBE0-QmFl9AlDaEnQGa79DybfLadmgrADq8xrRgEqoLEGhZrXqtEh_obI/exec';
 
     // (Opcional) IDs manuales de imágenes si no querés usar Apps Script.
     // Para obtener el ID: botón derecho en la imagen de Drive → "Obtener enlace" → copiar el ID.
@@ -407,7 +407,11 @@
             if (item.url) {
               // Convertir URL de Drive al formato más confiable
               const url = convertDriveUrl(item.url);
-              return { name: item.name || item.caption || '', url: url };
+              return { 
+                name: item.name || item.caption || '', 
+                url: url,
+                modifiedTime: item.modifiedTime // Preservar fecha de carga
+              };
             }
             if (item.id || item.fileId) {
               return buildImageFromId(item.id || item.fileId);
@@ -415,8 +419,15 @@
             return null;
           }).filter(Boolean);
 
-          // Invertir el orden para mostrar las últimas subidas primero
-          images.reverse();
+          // Ordenar por fecha de carga (modifiedTime) - más recientes primero
+          // Si el API devuelve modifiedTime, usarlo; sino hacer reverse simple
+          if (images.length > 0 && images[0].modifiedTime) {
+            images.sort(function(a, b) {
+              return new Date(b.modifiedTime) - new Date(a.modifiedTime);
+            });
+          } else {
+            images.reverse();
+          }
           
           renderCollage(images);
           return;
