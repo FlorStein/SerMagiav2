@@ -538,6 +538,42 @@
       }
     });
 
+    // Funcionalidad de swipe/deslizar para mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    function handleSwipe() {
+      const swipeThreshold = 50; // Mínimo de píxeles para considerar un swipe
+      const horizontalSwipe = Math.abs(touchEndX - touchStartX);
+      const verticalSwipe = Math.abs(touchEndY - touchStartY);
+      
+      // Solo procesar si el swipe es más horizontal que vertical
+      if (horizontalSwipe > verticalSwipe && horizontalSwipe > swipeThreshold) {
+        if (touchEndX < touchStartX) {
+          // Swipe hacia la izquierda - siguiente imagen
+          showNextImage();
+        } else if (touchEndX > touchStartX) {
+          // Swipe hacia la derecha - imagen anterior
+          showPrevImage();
+        }
+      }
+    }
+
+    if (lightboxEl) {
+      lightboxEl.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      lightboxEl.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+      }, { passive: true });
+    }
+
     // Cargar galería al iniciar
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', loadGallery);
