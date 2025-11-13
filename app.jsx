@@ -3,6 +3,7 @@ const links = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
   { href: "#vinito", label: "Vinito y Tarot" },
+  { href: "galeria-vinito.html", label: "Galería" },
   { href: "#pack", label: "El Pack" },
   { href: "#lecturas", label: "Lecturas" },
   { href: "#formacion", label: "Registros Akáshicos" },

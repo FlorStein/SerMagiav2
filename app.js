@@ -10,6 +10,9 @@ const links = [{
   href: "#vinito",
   label: "Vinito y Tarot"
 }, {
+  href: "galeria-vinito.html",
+  label: "Galería"
+}, {
   href: "#pack",
   label: "El Pack"
 }, {
