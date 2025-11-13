@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Auto-Refresh - Ser Magia</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { 
+      font-family: system-ui, -apple-system, sans-serif; 
+      max-width: 900px; 
+      margin: 0 auto; 
+      padding: 20px; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    h1 { color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    .card { 
+      background: rgba(255,255,255,0.15); 
+      backdrop-filter: blur(10px);
+      border-radius: 16px; 
+      padding: 20px; 
+      margin: 20px 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .status { 
+      padding: 12px 16px; 
+      border-radius: 8px; 
+      margin: 10px 0;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .success { background: rgba(16, 185, 129, 0.3); border-left: 4px solid #10b981; }
+    .info { background: rgba(59, 130, 246, 0.3); border-left: 4px solid #3b82f6; }
+    .warning { background: rgba(245, 158, 11, 0.3); border-left: 4px solid #f59e0b; }
+    .error { background: rgba(239, 68, 68, 0.3); border-left: 4px solid #ef4444; }
+    
+    .eventos-grid {
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .evento-item {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+    .evento-item:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+    .evento-item.new {
+      animation: slideIn 0.5s ease;
+      border-left: 4px solid #10b981;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .timer {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #fbbf24;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    button {
+      background: rgba(139, 92, 246, 0.8);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin: 5px;
+    }
+    button:hover {
+      background: rgba(139, 92, 246, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.5);
+    }
+    
+    .log {
+      background: rgba(0,0,0,0.3);
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85em;
+    }
+    .log-entry {
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .log-entry:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <h1>🔄 Demo: Auto-Refresh de Agenda</h1>
+  
+  <div class="card">
+    <h2>⏱️ Próxima actualización en: <span class="timer pulse" id="timer">30</span> segundos</h2>
+    <p>El sistema consulta Google Sheets automáticamente cada 30 segundos</p>
+  </div>
+  
+  <div class="card">
+    <h2>📊 Estado Actual</h2>
+    <div id="status"></div>
+    <div>
+      <button onclick="forceRefresh()">🔄 Forzar Actualización Ahora</button>
+      <button onclick="clearLogs()">🗑️ Limpiar Logs</button>
+      <button onclick="location.href='/'">🏠 Volver al Sitio</button>
+    </div>
+  </div>
+  
+  <div class="card">
+    <h2>📅 Eventos Cargados (<span id="count">0</span>)</h2>
+    <div id="eventos" class="eventos-grid"></div>
+  </div>
+  
+  <div class="card">
+    <h2>📝 Log de Actividad</h2>
+    <div id="log" class="log"></div>
+  </div>
+  
+  <div class="card">
+    <h2>💡 Instrucciones</h2>
+    <ol>
+      <li><strong>Abrí tu Google Sheet</strong> en otra pestaña</li>
+      <li><strong>Editá un evento</strong> (cambiar fecha, título, o cupos)</li>
+      <li><strong>Esperá 30-60 segundos</strong> y observá esta página</li>
+      <li>Deberías ver el cambio <strong>automáticamente</strong> sin recargar</li>
+    </ol>
+    <p><strong>Tip:</strong> Abrí la consola del navegador (F12) para ver más detalles</p>
+  </div>
+
+  <script src="./js/agenda-loader.js"></script>
+  <script>
+    let lastEventosJson = '';
+    let nextRefresh = 30;
+    let refreshInterval;
+    let timerInterval;
+    
+    function addLog(message, type = 'info') {
+      const logDiv = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      const time = new Date().toLocaleTimeString();
+      const emoji = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+      entry.innerHTML = `<span style="color: #94a3b8">[${time}]</span> ${emoji} ${message}`;
+      logDiv.insertBefore(entry, logDiv.firstChild);
+      
+      // Mantener solo últimos 20 logs
+      while (logDiv.children.length > 20) {
+        logDiv.removeChild(logDiv.lastChild);
+      }
+    }
+    
+    function updateStatus(message, type) {
+      const statusDiv = document.getElementById('status');
+      statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+    }
+    
+    function renderEventos(eventos) {
+      const eventosDiv = document.getElementById('eventos');
+      const countSpan = document.getElementById('count');
+      
+      if (!eventos || eventos.length === 0) {
+        eventosDiv.innerHTML = '<p style="opacity: 0.6">No hay eventos cargados</p>';
+        countSpan.textContent = '0';
+        return;
+      }
+      
+      countSpan.textContent = eventos.length;
+      
+      const currentJson = JSON.stringify(eventos);
+      const isNew = currentJson !== lastEventosJson;
+      lastEventosJson = currentJson;
+      
+      eventosDiv.innerHTML = eventos.map(e => `
+        <div class="evento-item ${isNew ? 'new' : ''}">
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div>
+              <div style="font-size: 0.85em; opacity: 0.8; margin-bottom: 5px;">${e.f || 'Sin fecha'}</div>
+              <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 5px;">${e.t || 'Sin título'}</div>
+              <div style="font-size: 0.9em; opacity: 0.9;">${e.cupos || 'Sin info de cupos'}</div>
+            </div>
+            ${isNew ? '<div style="color: #10b981; font-weight: bold;">NUEVO</div>' : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function checkForUpdates() {
+      addLog('Consultando Google Sheets...', 'info');
+      updateStatus('⏳ Consultando Google Sheets...', 'info');
+      
+      if (window.AGENDA_EVENTOS && window.AGENDA_EVENTOS.length) {
+        const eventos = window.AGENDA_EVENTOS;
+        updateStatus(`✅ Última actualización: ${new Date().toLocaleTimeString()} - ${eventos.length} evento(s)`, 'success');
+        addLog(`Eventos encontrados: ${eventos.length}`, 'success');
+        renderEventos(eventos);
+      } else {
+        updateStatus('⚠️ Esperando datos...', 'warning');
+        addLog('Aún no hay datos disponibles', 'info');
+      }
+      
+      // Resetear timer
+      nextRefresh = 30;
+    }
+    
+    function forceRefresh() {
+      addLog('🔄 Actualización forzada por el usuario', 'info');
+      nextRefresh = 0;
+      checkForUpdates();
+    }
+    
+    function clearLogs() {
+      document.getElementById('log').innerHTML = '';
+      addLog('Logs limpiados', 'info');
+    }
+    
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        nextRefresh--;
+        document.getElementById('timer').textContent = nextRefresh;
+        
+        if (nextRefresh <= 0) {
+          nextRefresh = 30;
+          checkForUpdates();
+        }
+      }, 1000);
+    }
+    
+    // Escuchar evento de actualización
+    window.addEventListener('agendaUpdated', (e) => {
+      const eventos = e.detail;
+      addLog(`🎉 ¡Agenda actualizada automáticamente! (${eventos.length} eventos)`, 'success');
+      updateStatus(`✅ Actualización automática detectada - ${eventos.length} evento(s)`, 'success');
+      renderEventos(eventos);
+    });
+    
+    // Inicialización
+    addLog('Demo iniciada. Esperando datos...', 'info');
+    updateStatus('🚀 Iniciando...', 'info');
+    
+    // Esperar a que se cargue agenda-loader.js
+    setTimeout(() => {
+      if (window.AGENDA_LOADER_PROMISE) {
+        addLog('Sistema de auto-refresh detectado ✅', 'success');
+        window.AGENDA_LOADER_PROMISE.then(() => {
+          checkForUpdates();
+        });
+      } else {
+        addLog('⚠️ Sistema de auto-refresh no disponible', 'error');
+        updateStatus('❌ Error: agenda-loader.js no se cargó correctamente', 'error');
+      }
+      
+      startTimer();
+    }, 500);
+  </script>
+</body>
+</html>

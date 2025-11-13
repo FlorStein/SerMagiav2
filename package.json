@@ -1,0 +1,27 @@
+{
+  "name": "ser-magia",
+  "version": "1.0.0",
+  "description": "Incluye todas las secciones de la v1, más: - **Animación** en el título del hero. - **Fondo del hero** desde `assets/background-tarot.svg`. - **Carta del Sol** a la vista completa (2:3, sin recortes).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel app.jsx --out-file app.js --presets=@babel/preset-react",
+    "dev": "babel app.jsx --watch --out-file app.js --presets=@babel/preset-react"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorStein/serMagia_v1.8.17_services_trigger_buttons.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlorStein/serMagia_v1.8.17_services_trigger_buttons/issues"
+  },
+  "homepage": "https://github.com/FlorStein/serMagia_v1.8.17_services_trigger_buttons#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-react": "^7.28.5"
+  }
+}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería Vinito y Tarot · Ser Magia</title>
+
+  <!-- Fuente principal -->
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet" />
+  <!-- Tailwind CDN solo para layout básico -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: 'Merienda', system-ui, cursive;
+      min-height: 100vh;
+      margin: 0;
+      background: radial-gradient(circle at top, #f28b66 0, #3d1a66 30%, #1a0b2e 70%, #05000a 100%);
+      color: #fff;
+    }
+
+    main {
+      padding-bottom: 5rem;
+    }
+
+    /* Contenedor del collage - Grid en desktop, stack en mobile */
+    #gallery-collage {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding: 1rem;
+      justify-items: center;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Tarjetas tipo polaroid */
+    .polaroid {
+      width: 336px;
+      background: rgba(252, 249, 255, 0.98);
+      padding: 1.2rem 1.2rem 3rem;
+      border-radius: 3px;
+      box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+      transform: rotate(0deg);
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 336px;
+      display: block;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .polaroid figcaption {
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+      text-align: center;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(26, 11, 46, 0.8);
+    }
+
+    .polaroid:hover {
+      transform: translateY(-8px) scale(1.05) rotate(3deg);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    /* Rotaciones sutiles y aleatorias para cada polaroid */
+    .polaroid:nth-child(6n+1) { transform: rotate(-2deg); }
+    .polaroid:nth-child(6n+2) { transform: rotate(1deg); }
+    .polaroid:nth-child(6n+3) { transform: rotate(-1deg); }
+    .polaroid:nth-child(6n+4) { transform: rotate(2deg); }
+    .polaroid:nth-child(6n+5) { transform: rotate(-1.5deg); }
+    .polaroid:nth-child(6n+6) { transform: rotate(1.5deg); }
+
+    /* Responsive: en tablet 2 columnas */
+    @media (max-width: 1024px) {
+      #gallery-collage {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .polaroid {
+        width: 100%;
+        max-width: 336px;
+      }
+
+      .polaroid img {
+        height: 336px;
+      }
+    }
+
+    /* Responsive: en mobile 1 columna */
+    @media (max-width: 640px) {
+      #gallery-collage {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .polaroid {
+        width: 100%;
+        max-width: 320px;
+        padding: 0.8rem 0.8rem 2rem;
+        transform: rotate(0deg) !important;
+      }
+
+      .polaroid img {
+        height: 320px;
+      }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 85%;
+      max-height: 85%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+    }
+
+    @media (max-width: 768px) {
+      .lightbox img {
+        max-width: 95%;
+        max-height: 95%;
+      }
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 2.5rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.15s ease, color 0.15s ease;
+      z-index: 1001;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.1);
+      color: #f2bb66;
+    }
+
+    /* Flechas de navegación del lightbox */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(242, 187, 102, 0.8);
+      border-color: #f2bb66;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev {
+      left: 2rem;
+    }
+
+    .lightbox-next {
+      right: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .lightbox-prev { left: 1rem; }
+      .lightbox-next { right: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="max-w-6xl mx-auto px-4 pt-8">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <a href="index.html" class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/25 px-5 py-2 text-sm hover:bg-white/20 transition">
+        <span>←</span>
+        <span>Volver al sitio</span>
+      </a>
+      <h1 class="mt-6 text-4xl md:text-5xl font-bold drop-shadow-[0_0_18px_rgba(0,0,0,0.6)]">
+        ✨ Galería Vinito y Tarot ✨
+      </h1>
+      <p class="mt-3 text-lg md:text-xl text-white/85 max-w-2xl mx-auto">
+        Momentos mágicos, copas compartidas y cartas desplegadas en la mesa. Un collage vivo de cada encuentro.
+      </p>
+    </header>
+
+    <!-- Collage -->
+    <section aria-label="Galería de fotos Vinito y Tarot">
+      <div id="gallery-collage"></div>
+    </section>
+
+    <!-- Mensaje de error (oculto por defecto) -->
+    <div id="error" class="hidden max-w-2xl mx-auto text-center text-sm text-rose-100/90 bg-rose-900/50 border border-rose-500/60 rounded-2xl px-6 py-5 mt-8">
+      <p class="font-semibold mb-2 text-base">⚠️ Error al cargar la galería</p>
+      <p class="text-xs opacity-80">
+        Verificá la consola del navegador para más detalles.
+      </p>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" aria-label="Cerrar imagen">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Imagen anterior">‹</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Imagen siguiente">›</button>
+    <img id="lightbox-img" src="" alt="Imagen ampliada" />
+  </div>
+
+  <script>
+    // === CONFIGURACIÓN ===
+    // ID de la carpeta de Drive (para referencia / futuro fallback)
+    const FOLDER_ID = '1Bxd0wn9JAverBu6A6rfpUJasNLcXKESj';
+
+    // URL de tu Apps Script Web App que expone las imágenes en JSON.
+    // EJEMPLO de JSON esperado:
+    // [
+    //   { "name": "Encuentro 1", "url": "https://drive.google.com/uc?export=view&id=ABC" },
+    //   { "name": "Encuentro 2", "url": "https://drive.google.com/uc?export=view&id=DEF" }
+    // ]
+        // API de Google Apps Script (actualmente no funciona - devuelve HTML en lugar de JSON)
+        // Dejá vacío para usar IMAGE_IDS en su lugar
+        const DRIVE_API_URL = 'https://script.google.com/macros/s/AKfycbzXBpIV9QgOP-65z1qqT47m-3LxTKj_9r1Ug3_AD222LsS0iNVehdm8ZQbBprcqC-n1/exec';
+
+    // (Opcional) IDs manuales de imágenes si no querés usar Apps Script.
+    // Para obtener el ID: botón derecho en la imagen de Drive → "Obtener enlace" → copiar el ID.
+    // Ejemplo: si tu enlace es https://drive.google.com/file/d/1ABC123xyz/view
+    // entonces tu ID es: 1ABC123xyz
+    const IMAGE_IDS = [
+      // Agregá tus IDs de Google Drive aquí:
+      // '1ABC123xyz',
+      // '1DEF456abc',
+      // '1GHI789def',
+    ];
+
+    function buildImageFromId(id) {
+      return {
+        name: '',
+        url: 'https://drive.google.com/uc?export=view&id=' + id
+      };
+    }
+
+    // Función para convertir URLs de Drive a formato más compatible con navegadores
+    function convertDriveUrl(url) {
+      // Si ya es del formato correcto, dejarla como está
+      if (url.includes('lh3.googleusercontent.com')) {
+        return url;
+      }
+      
+      // Extraer el ID de la URL de Drive
+      const match = url.match(/[?&]id=([^&]+)/);
+      if (match && match[1]) {
+        const fileId = match[1];
+        // Usar el formato de Google User Content que es más confiable
+        return 'https://lh3.googleusercontent.com/d/' + fileId;
+      }
+      
+      // Si no podemos extraer el ID, devolver la URL original
+      return url;
+    }
+
+    function createPolaroidElement(image, index, allImages) {
+      const figure = document.createElement('figure');
+      figure.className = 'polaroid';
+
+      const img = document.createElement('img');
+      img.src = image.url;
+      img.alt = image.name || ('Foto ' + (index + 1));
+      img.loading = 'lazy';
+
+      const caption = document.createElement('figcaption');
+      caption.textContent = image.name || '';
+
+      figure.appendChild(img);
+      figure.appendChild(caption);
+
+      figure.addEventListener('click', function () {
+        openLightbox(image.url, img.alt, allImages, index);
+      });
+
+      return figure;
+    }
+
+    function renderCollage(images) {
+      const gallery = document.getElementById('gallery-collage');
+      gallery.innerHTML = '';
+
+      images.forEach(function (img, index) {
+        if (!img || !img.url) return;
+        const card = createPolaroidElement(img, index, images);
+        gallery.appendChild(card);
+      });
+    }
+
+    async function loadGallery() {
+      const errorBox = document.getElementById('error');
+
+      function showError(msg) {
+        if (errorBox) {
+          errorBox.classList.remove('hidden');
+          if (msg) {
+            const firstP = errorBox.querySelector('p');
+            if (firstP) firstP.textContent = msg;
+          }
+        }
+      }
+
+      try {
+        // 1) Si hay IDs manuales, usarlos
+        if (IMAGE_IDS.length > 0 && IMAGE_IDS[0]) {
+          const imgs = IMAGE_IDS.map(buildImageFromId);
+          renderCollage(imgs);
+          return;
+        }
+
+        // 2) Si hay API configurada, consumirla
+        if (DRIVE_API_URL && DRIVE_API_URL.trim() !== '') {
+          const res = await fetch(DRIVE_API_URL, { cache: 'no-store' });
+          if (!res.ok) throw new Error('La API devolvió un estado no OK');
+
+          const data = await res.json();
+          if (!Array.isArray(data) || data.length === 0) {
+            throw new Error('La API devolvió una lista vacía.');
+          }
+
+          // Normalizar por si vienen otras keys y convertir URLs a formato más compatible
+          const images = data.map(function (item) {
+            if (typeof item === 'string') {
+              return buildImageFromId(item);
+            }
+            if (item.url) {
+              // Convertir URL de Drive al formato más confiable
+              const url = convertDriveUrl(item.url);
+              return { name: item.name || item.caption || '', url: url };
+            }
+            if (item.id || item.fileId) {
+              return buildImageFromId(item.id || item.fileId);
+            }
+            return null;
+          }).filter(Boolean);
+
+          renderCollage(images);
+          return;
+        }
+
+        // 3) Si no hay nada configurado, mostrar error explícito
+        console.warn('⚠️ [Galería] No hay fotos configuradas. Necesitás configurar IMAGE_IDS o DRIVE_API_URL');
+        showError('⚠️ Falta configurar la API de Google Apps Script o la lista IMAGE_IDS.');
+      } catch (err) {
+        console.error('❌ [Galería] Error cargando:', err);
+        
+        // Mostrar error más específico según el tipo
+        let errorMsg = 'Ocurrió un error cargando la galería.';
+        if (err.message && err.message.includes('API')) {
+          errorMsg = 'La API de Google Apps Script no está respondiendo correctamente. Verificá que esté desplegada como pública.';
+        } else if (err.message && err.message.includes('vacía')) {
+          errorMsg = 'La carpeta de Drive está vacía o no tiene imágenes.';
+        }
+        
+        showError(errorMsg);
+      }
+    }
+
+    // Lightbox con navegación
+    const lightboxEl = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCloseBtn = document.querySelector('.lightbox-close');
+    const lightboxPrevBtn = document.querySelector('.lightbox-prev');
+    const lightboxNextBtn = document.querySelector('.lightbox-next');
+    
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openLightbox(src, alt, images, index) {
+      if (!lightboxEl || !lightboxImg) return;
+      
+      currentImages = images || [];
+      currentIndex = index || 0;
+      
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || 'Imagen ampliada';
+      lightboxEl.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      updateNavButtons();
+    }
+
+    function closeLightbox() {
+      if (!lightboxEl || !lightboxImg) return;
+      lightboxEl.classList.remove('active');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    function updateNavButtons() {
+      if (!lightboxPrevBtn || !lightboxNextBtn) return;
+      
+      // Mostrar/ocultar flechas según la posición
+      lightboxPrevBtn.style.display = currentIndex > 0 ? 'flex' : 'none';
+      lightboxNextBtn.style.display = currentIndex < currentImages.length - 1 ? 'flex' : 'none';
+    }
+
+    function showPrevImage() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        const img = currentImages[currentIndex];
+        lightboxImg.src = img.url;
+        lightboxImg.alt = img.name || ('Foto ' + (currentIndex + 1));
+        updateNavButtons();
+      }
+    }
+
+    function showNextImage() {
+      if (currentIndex < currentImages.length - 1) {
+        currentIndex++;
+        const img = currentImages[currentIndex];
+        lightboxImg.src = img.url;
+        lightboxImg.alt = img.name || ('Foto ' + (currentIndex + 1));
+        updateNavButtons();
+      }
+    }
+
+    if (lightboxCloseBtn) {
+      lightboxCloseBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        closeLightbox();
+      });
+    }
+
+    if (lightboxPrevBtn) {
+      lightboxPrevBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPrevImage();
+      });
+    }
+
+    if (lightboxNextBtn) {
+      lightboxNextBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showNextImage();
+      });
+    }
+
+    if (lightboxEl) {
+      lightboxEl.addEventListener('click', function (e) {
+        if (e.target === lightboxEl) {
+          closeLightbox();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        showPrevImage();
+      } else if (e.key === 'ArrowRight') {
+        showNextImage();
+      }
+    });
+
+    // Cargar galería al iniciar
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadGallery);
+    } else {
+      loadGallery();
+    }
+  </script>
+</body>
+</html>

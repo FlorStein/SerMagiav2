@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🎮 Simulador de Cambios - Ser Magia</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { 
+      font-family: system-ui, -apple-system, sans-serif; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 20px; 
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: white;
+    }
+    h1 { text-align: center; margin-bottom: 30px; }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .panel {
+      background: rgba(255,255,255,0.15); 
+      backdrop-filter: blur(10px);
+      border-radius: 16px; 
+      padding: 25px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    h2 {
+      margin-top: 0;
+      color: #fbbf24;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .demo-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .demo-controls button {
+      background: rgba(139, 92, 246, 0.8);
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1em;
+      transition: all 0.3s;
+      text-align: left;
+    }
+    .demo-controls button:hover {
+      background: rgba(139, 92, 246, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.5);
+    }
+    .demo-controls button:active {
+      transform: translateY(0);
+    }
+    .status {
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-weight: 600;
+      border-left: 4px solid;
+    }
+    .success { background: rgba(16, 185, 129, 0.3); border-color: #10b981; }
+    .info { background: rgba(59, 130, 246, 0.3); border-color: #3b82f6; }
+    .warning { background: rgba(245, 158, 11, 0.3); border-color: #f59e0b; }
+    
+    .eventos-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .evento-card {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s;
+    }
+    .evento-card.updated {
+      animation: highlight 1s ease;
+      border-color: #10b981;
+    }
+    @keyframes highlight {
+      0%, 100% { background: rgba(255,255,255,0.1); }
+      50% { background: rgba(16, 185, 129, 0.3); }
+    }
+    
+    .timer {
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+      color: #fbbf24;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .instructions {
+      background: rgba(0,0,0,0.2);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 0.9em;
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Simulador de Auto-Refresh en Tiempo Real</h1>
+  
+  <div class="container">
+    <div class="panel">
+      <h2>🎯 Acciones de Demo</h2>
+      
+      <div class="demo-controls">
+        <button onclick="simulateChange('cupos')">
+          🔢 Cambiar Cupos<br>
+          <small style="opacity: 0.8">Simula actualización de disponibilidad</small>
+        </button>
+        
+        <button onclick="simulateChange('fecha')">
+          📅 Cambiar Fecha<br>
+          <small style="opacity: 0.8">Simula reprogramación de evento</small>
+        </button>
+        
+        <button onclick="simulateChange('nuevo')">
+          ➕ Agregar Evento<br>
+          <small style="opacity: 0.8">Simula nuevo evento agregado</small>
+        </button>
+        
+        <button onclick="simulateChange('eliminar')">
+          ❌ Eliminar Evento<br>
+          <small style="opacity: 0.8">Simula evento cancelado</small>
+        </button>
+        
+        <button onclick="forceRefresh()" style="background: rgba(16, 185, 129, 0.8);">
+          🔄 Forzar Actualización<br>
+          <small style="opacity: 0.8">Consultar ahora sin esperar</small>
+        </button>
+      </div>
+      
+      <div class="instructions">
+        <strong>💡 Cómo funciona:</strong>
+        <ul style="margin: 10px 0; padding-left: 20px;">
+          <li>Hacé click en cualquier botón de acción</li>
+          <li>Se simula un cambio en Google Sheets</li>
+          <li>El sistema detecta el cambio automáticamente</li>
+          <li>La lista se actualiza sin recargar</li>
+        </ul>
+        <p style="margin: 10px 0 0 0;">
+          <strong>Nota:</strong> Esta es una simulación local. En producción, los cambios vienen de Google Sheets.
+        </p>
+      </div>
+    </div>
+    
+    <div class="panel">
+      <h2>📊 Estado del Sistema</h2>
+      
+      <div id="status"></div>
+      
+      <div style="text-align: center; margin: 20px 0;">
+        <div style="font-size: 0.9em; opacity: 0.8;">Próxima consulta en:</div>
+        <div class="timer" id="timer">30</div>
+        <div style="font-size: 0.9em; opacity: 0.8;">segundos</div>
+      </div>
+      
+      <h3 style="margin: 20px 0 10px 0;">📅 Eventos Actuales (<span id="count">0</span>)</h3>
+      <div id="eventos" class="eventos-list"></div>
+    </div>
+  </div>
+
+  <script src="./js/agenda-loader.js"></script>
+  <script>
+    let simulatedEventos = [];
+    let nextRefresh = 30;
+    let timerInterval;
+    
+    function updateStatus(message, type) {
+      const statusDiv = document.getElementById('status');
+      statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+    }
+    
+    function renderEventos(eventos, highlight = false) {
+      const eventosDiv = document.getElementById('eventos');
+      const countSpan = document.getElementById('count');
+      
+      if (!eventos || eventos.length === 0) {
+        eventosDiv.innerHTML = '<div style="opacity: 0.6; text-align: center; padding: 20px;">No hay eventos</div>';
+        countSpan.textContent = '0';
+        return;
+      }
+      
+      countSpan.textContent = eventos.length;
+      
+      eventosDiv.innerHTML = eventos.map((e, i) => `
+        <div class="evento-card ${highlight ? 'updated' : ''}" style="animation-delay: ${i * 0.1}s">
+          <div style="font-size: 0.85em; opacity: 0.8; margin-bottom: 5px;">
+            ${e.f || 'Sin fecha'}
+          </div>
+          <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 5px;">
+            ${e.t || 'Sin título'}
+          </div>
+          <div style="font-size: 0.9em; opacity: 0.9; color: #fbbf24;">
+            ${e.cupos || 'Sin info'}
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function simulateChange(type) {
+      const tipos = {
+        cupos: () => {
+          if (simulatedEventos.length > 0) {
+            const idx = Math.floor(Math.random() * simulatedEventos.length);
+            const oldCupos = simulatedEventos[idx].cupos;
+            simulatedEventos[idx].cupos = `Quedan ${Math.floor(Math.random() * 10) + 1}`;
+            updateStatus(`✅ Simulado: Cambio de cupos en "${simulatedEventos[idx].t}"<br><small>Antes: ${oldCupos} → Ahora: ${simulatedEventos[idx].cupos}</small>`, 'success');
+          }
+        },
+        fecha: () => {
+          if (simulatedEventos.length > 0) {
+            const idx = Math.floor(Math.random() * simulatedEventos.length);
+            const dias = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+            const dia = dias[Math.floor(Math.random() * dias.length)];
+            const num = Math.floor(Math.random() * 28) + 1;
+            const hora = `${Math.floor(Math.random() * 12) + 10}:00`;
+            simulatedEventos[idx].f = `${dia} ${num} Nov · ${hora}`;
+            updateStatus(`✅ Simulado: Cambio de fecha en "${simulatedEventos[idx].t}"`, 'success');
+          }
+        },
+        nuevo: () => {
+          const newEvento = {
+            f: `Vie ${Math.floor(Math.random() * 28) + 1} Dic · 19:00`,
+            t: 'Nuevo Evento de Tarot',
+            cupos: 'Abierta inscripción'
+          };
+          simulatedEventos.push(newEvento);
+          updateStatus(`✅ Simulado: Nuevo evento agregado: "${newEvento.t}"`, 'success');
+        },
+        eliminar: () => {
+          if (simulatedEventos.length > 1) {
+            const removed = simulatedEventos.pop();
+            updateStatus(`✅ Simulado: Evento eliminado: "${removed.t}"`, 'warning');
+          } else {
+            updateStatus(`⚠️ No se puede eliminar: debe quedar al menos 1 evento`, 'warning');
+            return;
+          }
+        }
+      };
+      
+      if (tipos[type]) {
+        tipos[type]();
+        window.AGENDA_EVENTOS = [...simulatedEventos];
+        window.dispatchEvent(new CustomEvent('agendaUpdated', { detail: simulatedEventos }));
+        renderEventos(simulatedEventos, true);
+      }
+    }
+    
+    function forceRefresh() {
+      updateStatus('🔄 Forzando actualización...', 'info');
+      nextRefresh = 30;
+      
+      setTimeout(() => {
+        updateStatus('✅ Actualización completada', 'success');
+        renderEventos(simulatedEventos);
+      }, 500);
+    }
+    
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        nextRefresh--;
+        document.getElementById('timer').textContent = nextRefresh;
+        
+        if (nextRefresh <= 0) {
+          nextRefresh = 30;
+          updateStatus('🔄 Consultando Google Sheets...', 'info');
+          setTimeout(() => {
+            updateStatus('✅ Sistema sincronizado', 'success');
+          }, 1000);
+        }
+      }, 1000);
+    }
+    
+    // Inicialización
+    setTimeout(() => {
+      if (window.AGENDA_EVENTOS && window.AGENDA_EVENTOS.length) {
+        simulatedEventos = [...window.AGENDA_EVENTOS];
+        updateStatus('✅ Sistema iniciado correctamente', 'success');
+        renderEventos(simulatedEventos);
+      } else {
+        // Eventos de demo si no hay datos
+        simulatedEventos = [
+          { f: 'Sáb 16 Nov · 18:00', t: 'Vinito y Tarot (Microcentro)', cupos: 'Quedan 7' },
+          { f: 'Vie 29 Nov · 19:00', t: 'Vinito y Tarot a domicilio', cupos: 'Cupos 10–30' },
+          { f: 'Sáb 14 Dic · 10:00', t: 'Formación Tarot – Módulo 1', cupos: 'Abierta inscripción' }
+        ];
+        window.AGENDA_EVENTOS = simulatedEventos;
+        updateStatus('✅ Sistema iniciado con datos de ejemplo', 'info');
+        renderEventos(simulatedEventos);
+      }
+      
+      startTimer();
+    }, 500);
+    
+    // Escuchar actualizaciones
+    window.addEventListener('agendaUpdated', (e) => {
+      console.log('🎉 Evento agendaUpdated detectado:', e.detail);
+    });
+  </script>
+</body>
+</html>

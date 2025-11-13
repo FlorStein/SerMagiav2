@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test URLs de Google Drive</title>
+  <style>
+    body {
+      font-family: system-ui;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #1a0b2e;
+      color: white;
+    }
+    
+    .test-image {
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
+    
+    .test-image img {
+      max-width: 300px;
+      border: 2px solid #f2bb66;
+      border-radius: 8px;
+      display: block;
+      margin: 10px 0;
+    }
+    
+    .error {
+      color: #f87171;
+    }
+    
+    .success {
+      color: #4ade80;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Test de URLs de Google Drive</h1>
+  <p>Probando si las imágenes desde tu API cargan correctamente...</p>
+  
+  <div id="results"></div>
+  
+  <script>
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzXBpIV9QgOP-65z1qqT47m-3LxTKj_9r1Ug3_AD222LsS0iNVehdm8ZQbBprcqC-n1/exec';
+    
+    async function testImages() {
+      const resultsDiv = document.getElementById('results');
+      
+      try {
+        console.log('🔄 Fetching API...');
+        const res = await fetch(API_URL, { cache: 'no-store' });
+        
+        if (!res.ok) {
+          resultsDiv.innerHTML = `<p class="error">❌ Error: API devolvió status ${res.status}</p>`;
+          return;
+        }
+        
+        const data = await res.json();
+        console.log('✅ API Response:', data);
+        
+        if (!Array.isArray(data) || data.length === 0) {
+          resultsDiv.innerHTML = '<p class="error">❌ La API devolvió una lista vacía</p>';
+          return;
+        }
+        
+        resultsDiv.innerHTML = `<p class="success">✅ API funcionó! Se encontraron ${data.length} imágenes</p>`;
+        
+        // Probar las primeras 5 imágenes
+        const testImages = data.slice(0, 5);
+        
+        testImages.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.className = 'test-image';
+          
+          const title = document.createElement('h3');
+          title.textContent = `Imagen ${index + 1}: ${item.name}`;
+          
+          const urlPara = document.createElement('p');
+          urlPara.innerHTML = `<strong>URL:</strong> <code>${item.url}</code>`;
+          
+          const img = document.createElement('img');
+          img.src = item.url;
+          img.alt = item.name;
+          
+          const status = document.createElement('p');
+          status.textContent = '⏳ Cargando...';
+          
+          img.onload = function() {
+            status.innerHTML = '<span class="success">✅ Imagen cargó correctamente</span>';
+            console.log(`✅ Imagen ${index + 1} cargó:`, item.url);
+          };
+          
+          img.onerror = function() {
+            status.innerHTML = '<span class="error">❌ Error al cargar imagen (posible problema de permisos)</span>';
+            console.error(`❌ Error cargando imagen ${index + 1}:`, item.url);
+          };
+          
+          div.appendChild(title);
+          div.appendChild(urlPara);
+          div.appendChild(img);
+          div.appendChild(status);
+          
+          resultsDiv.appendChild(div);
+        });
+        
+      } catch (err) {
+        console.error('❌ Error:', err);
+        resultsDiv.innerHTML = `<p class="error">❌ Error: ${err.message}</p>`;
+      }
+    }
+    
+    testImages();
+  </script>
+</body>
+</html>

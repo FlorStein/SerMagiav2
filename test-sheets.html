@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Carga Google Sheets</title>
+  <style>
+    body { font-family: system-ui; max-width: 800px; margin: 40px auto; padding: 20px; }
+    h1 { color: #8a0bd2; }
+    .status { padding: 10px; margin: 10px 0; border-radius: 8px; }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    .info { background: #d1ecf1; color: #0c5460; }
+    pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    button { background: #8a0bd2; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin: 5px; }
+    button:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <h1>🔍 Test de Carga de Agenda desde Google Sheets</h1>
+  
+  <div id="status"></div>
+  
+  <h2>URL Configurada:</h2>
+  <pre id="url"></pre>
+  
+  <button onclick="testFetch()">🔄 Probar Carga</button>
+  <button onclick="location.reload()">🔃 Recargar Página</button>
+  
+  <h2>Resultado:</h2>
+  <div id="result"></div>
+  
+  <h2>Eventos Parseados:</h2>
+  <div id="eventos"></div>
+  
+  <h2>Instrucciones para Actualizar la Hoja:</h2>
+  <ol>
+    <li><strong>Abrí tu Google Sheet</strong> con los eventos</li>
+    <li>Ve a <strong>Archivo → Compartir → Publicar en la web</strong></li>
+    <li>Seleccioná la hoja específica (ej: "Hoja 1" o "Agenda")</li>
+    <li>En formato, elegí: <strong>Valores separados por comas (.csv)</strong></li>
+    <li>Copiá el enlace público (debe terminar en <code>output=csv</code>)</li>
+    <li>Pegalo en <code>js/agenda-loader.js</code> línea 14</li>
+    <li><strong>Importante:</strong> Limpiá la caché del navegador (Ctrl+Shift+Delete) después de actualizar</li>
+  </ol>
+  
+  <h3>Formato esperado del CSV:</h3>
+  <pre>fecha,hora,titulo,subtitulo,cupos,estado,link_reservar,link_consultar,imagen
+Sáb 16 Nov,18:00,Vinito y Tarot,Microcentro,6,Quedan 6,,,
+Vie 29 Nov,19:00,Vinito y Tarot a domicilio,,10-30,Cupos 10–30,,,</pre>
+
+  <script src="./js/agenda-loader.js"></script>
+  <script>
+    // Mostrar la URL configurada
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNJARxZ_CBiwnjGUDOonIqTqRp8xjrtfhltQRp-ptEbcga2Qxb9Apg2ecALLLM8g/pub?gid=396204798&single=true&output=csv";
+    document.getElementById('url').textContent = SHEET_URL;
+    
+    function showStatus(msg, type) {
+      const statusDiv = document.getElementById('status');
+      statusDiv.className = 'status ' + type;
+      statusDiv.innerHTML = msg;
+    }
+    
+    function testFetch() {
+      showStatus('⏳ Cargando desde Google Sheets...', 'info');
+      document.getElementById('result').innerHTML = '';
+      document.getElementById('eventos').innerHTML = '';
+      
+      fetch(SHEET_URL, { cache: "no-store" })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+          }
+          showStatus(`✅ Conexión exitosa (HTTP ${res.status})`, 'success');
+          return res.text();
+        })
+        .then(csv => {
+          document.getElementById('result').innerHTML = '<strong>CSV recibido:</strong><pre>' + 
+            csv.substring(0, 1000) + (csv.length > 1000 ? '\n\n... (truncado)' : '') + '</pre>';
+          
+          // Parsear CSV
+          const lines = csv.trim().split(/\r?\n/);
+          const headers = lines[0].split(",").map(h => h.trim());
+          
+          const eventos = lines.slice(1).map(row => {
+            const cols = [];
+            let cur = "", inQuotes = false;
+            for (let i = 0; i < row.length; i++) {
+              const ch = row[i];
+              if (ch === '"' && row[i+1] === '"') { cur += '"'; i++; continue; }
+              if (ch === '"') { inQuotes = !inQuotes; continue; }
+              if (ch === "," && !inQuotes) { cols.push(cur); cur = ""; continue; }
+              cur += ch;
+            }
+            cols.push(cur);
+            
+            const obj = {};
+            headers.forEach((h, idx) => obj[h] = (cols[idx] || "").trim());
+            return obj;
+          }).filter(r => (r.titulo || "").trim() !== "");
+          
+          if (eventos.length > 0) {
+            showStatus(`✅ ${eventos.length} evento(s) encontrado(s)`, 'success');
+            
+            let html = '<table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%;">';
+            html += '<tr><th>Fecha</th><th>Hora</th><th>Título</th><th>Cupos</th></tr>';
+            eventos.forEach(e => {
+              html += `<tr>
+                <td>${e.fecha || '-'}</td>
+                <td>${e.hora || '-'}</td>
+                <td>${e.titulo || '-'}${e.subtitulo ? ' – ' + e.subtitulo : ''}</td>
+                <td>${e.estado || e.cupos || '-'}</td>
+              </tr>`;
+            });
+            html += '</table>';
+            document.getElementById('eventos').innerHTML = html;
+          } else {
+            showStatus('⚠️ CSV válido pero sin eventos (todas las filas vacías)', 'error');
+          }
+        })
+        .catch(err => {
+          showStatus(`❌ Error: ${err.message}`, 'error');
+          document.getElementById('result').innerHTML = `<pre style="color: red;">${err.stack || err}</pre>`;
+          
+          // Sugerencias según el error
+          let sugerencias = '<h3>Posibles causas:</h3><ul>';
+          if (err.message.includes('403') || err.message.includes('404')) {
+            sugerencias += '<li>La hoja no está publicada en la web</li>';
+            sugerencias += '<li>El enlace no es correcto</li>';
+            sugerencias += '<li>Verificá que el enlace sea público y termine en <code>output=csv</code></li>';
+          } else if (err.message.includes('CORS')) {
+            sugerencias += '<li>Problema de CORS (la hoja debe estar publicada públicamente)</li>';
+          } else {
+            sugerencias += '<li>Verificá tu conexión a internet</li>';
+            sugerencias += '<li>Intentá abrir el enlace directamente en el navegador</li>';
+          }
+          sugerencias += '</ul>';
+          document.getElementById('eventos').innerHTML = sugerencias;
+        });
+    }
+    
+    // Auto-ejecutar al cargar
+    setTimeout(testFetch, 500);
+    
+    // Esperar a que termine agenda-loader.js
+    if (window.AGENDA_LOADER_PROMISE) {
+      window.AGENDA_LOADER_PROMISE.then(() => {
+        if (window.AGENDA_EVENTOS && window.AGENDA_EVENTOS.length) {
+          console.log('✅ agenda-loader.js cargó correctamente:', window.AGENDA_EVENTOS);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
