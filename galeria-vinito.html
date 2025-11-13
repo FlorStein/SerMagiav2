@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Galería Vinito y Tarot · Ser Magia</title>
 
+  <!-- Preconexiones para acelerar carga de recursos -->
+  <link rel="preconnect" href="https://lh3.googleusercontent.com" />
+  <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <!-- Fuente principal -->
   <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet" />
   <!-- Tailwind CDN solo para layout básico -->
@@ -19,7 +25,8 @@
       font-family: 'Merienda', system-ui, cursive;
       min-height: 100vh;
       margin: 0;
-      background: radial-gradient(circle at top, #f28b66 0, #3d1a66 30%, #1a0b2e 70%, #05000a 100%);
+      background-image: url('./assets/cieloestrelladomagico.png');
+      background-attachment: fixed;
       color: #fff;
     }
 
@@ -228,7 +235,7 @@
         <span>Volver al sitio</span>
       </a>
       <h1 class="mt-6 text-4xl md:text-5xl font-bold drop-shadow-[0_0_18px_rgba(0,0,0,0.6)]">
-        ✨ Galería Vinito & Tarot ✨
+        Galería Vinito & Tarot
       </h1>
       <p class="mt-3 text-lg md:text-xl text-white/85 max-w-2xl mx-auto">
         Momentos mágicos, copas compartidas y cartas desplegadas en la mesa. Un collage vivo de cada encuentro.
@@ -301,8 +308,9 @@
       const match = url.match(/[?&]id=([^&]+)/);
       if (match && match[1]) {
         const fileId = match[1];
-        // Usar el formato de Google User Content que es más confiable
-        return 'https://lh3.googleusercontent.com/d/' + fileId;
+        // Usar el formato de Google User Content que es más confiable y rápido
+        // Agregamos =s0 para obtener la imagen en tamaño original sin procesamiento adicional
+        return 'https://lh3.googleusercontent.com/d/' + fileId + '=s0';
       }
       
       // Si no podemos extraer el ID, devolver la URL original
@@ -324,7 +332,14 @@
       img.src = image.url;
       const cleanName = cleanFileName(image.name);
       img.alt = cleanName || ('Foto ' + (index + 1));
-      img.loading = 'lazy';
+      
+      // Cargar inmediatamente las primeras 9 fotos (primera fila de 3), lazy el resto
+      img.loading = index < 9 ? 'eager' : 'lazy';
+      
+      // Añadir fetchpriority alto a las primeras 6 imágenes
+      if (index < 6) {
+        img.fetchPriority = 'high';
+      }
 
       const caption = document.createElement('figcaption');
       caption.textContent = cleanName || '';

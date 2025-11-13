@@ -357,9 +357,9 @@ function App(){
               <li>A domicilio 2: hasta 30 personas. Incluye vino, juegos y sesión para la/el anfitrión.</li>
             </ul>
             <div className="mt-5 flex gap-3">
-              <a href="https://wa.me/5491168040649" className="rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition">Quiero sumarme</a>
-              <a href="#contacto" className="rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition">Consultar disponibilidad</a>
-              <a href="galeria-vinito.html" className="rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm hover:bg-white/25 hover:text-white transition">Espiar</a>
+              <a href="https://wa.me/5491168040649" className="rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition">Próximo vinito</a>
+              <a href="#contacto" className="rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition">Tu Vinito & Tarot</a>
+              <a href="galeria-vinito.html" className="rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition">Espiar</a>
             </div>
           </div>
         </div>

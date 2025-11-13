@@ -426,12 +426,12 @@ function App() {
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
     className: "rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition"
-  }, "Quiero sumarme"), /*#__PURE__*/React.createElement("a", {
+  }, "Próximo vinito"), /*#__PURE__*/React.createElement("a", {
     href: "#contacto",
     className: "rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition"
-  }, "Consultar disponibilidad"), /*#__PURE__*/React.createElement("a", {
+  }, "Tu Vinito & Tarot"), /*#__PURE__*/React.createElement("a", {
     href: "galeria-vinito.html",
-    className: "rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm hover:bg-white/25 hover:text-white transition"
+    className: "rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition"
   }, "Espiar"))))), /*#__PURE__*/React.createElement("section", {
     id: "pack",
     className: "py-8 md:py-16 min-h-[100svh] flex items-center",
