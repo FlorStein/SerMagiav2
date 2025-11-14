@@ -575,10 +575,17 @@ function App() {
   }, "Todos los servicios requieren se\xF1a para reservar; no reembolsable ante cancelaci\xF3n."), /*#__PURE__*/React.createElement(ContactForm, null)))), /*#__PURE__*/React.createElement("footer", {
     className: "pb-10 pt-6 border-t bg-[#8a0bd2] text-white border-[#8a0bd2]/20"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-6"
+    className: "mx-auto max-w-6xl px-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-col md:flex-row items-center justify-between gap-6"
   }, /*#__PURE__*/React.createElement("p", {
     className: "text-sm text-white/90"
-  }, "\xA9 ", new Date().getFullYear(), " Ser Magia Tarot"), /*#__PURE__*/React.createElement("div", {
+  }, "\xA9 ", new Date().getFullYear(), " Ser Magia Tarot"), /*#__PURE__*/React.createElement("a", {
+    href: "https://studionolaatelier.com/",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "studio-nola-link inline-block text-sm text-white/80 transition-all duration-300"
+  }, "Hecho con \uD83D\uDC9C por Studio Nola Atelier"), /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-5 text-sm"
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://instagram.com/sermagia.tarot",
@@ -586,7 +593,7 @@ function App() {
   }, "Instagram"), /*#__PURE__*/React.createElement("a", {
     href: "#",
     className: "text-white hover:text-[#f4dbff]"
-  }, "Pol\xEDtica de privacidad")))));
+  }, "Pol\xEDtica de privacidad"))))));
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));

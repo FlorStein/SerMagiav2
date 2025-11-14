@@ -485,11 +485,14 @@ function App(){
 
       {/* FOOTER */}
       <footer className="pb-10 pt-6 border-t bg-[#8a0bd2] text-white border-[#8a0bd2]/20">
-        <div className="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-sm text-white/90">© {new Date().getFullYear()} Ser Magia Tarot</p>
-          <div className="flex items-center gap-5 text-sm">
-            <a href="https://instagram.com/sermagia.tarot" className="text-white hover:text-[#f4dbff]">Instagram</a>
-            <a href="#" className="text-white hover:text-[#f4dbff]">Política de privacidad</a>
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <p className="text-sm text-white/90">© {new Date().getFullYear()} Ser Magia Tarot</p>
+            <a href="https://studionolaatelier.com/" target="_blank" rel="noopener noreferrer" className="studio-nola-link inline-block text-sm text-white/80 transition-all duration-300">Hecho con 💜 por Studio Nola Atelier</a>
+            <div className="flex items-center gap-5 text-sm">
+              <a href="https://instagram.com/sermagia.tarot" className="text-white hover:text-[#f4dbff]">Instagram</a>
+              <a href="#" className="text-white hover:text-[#f4dbff]">Política de privacidad</a>
+            </div>
           </div>
         </div>
       </footer>
