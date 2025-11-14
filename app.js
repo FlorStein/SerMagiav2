@@ -43,7 +43,7 @@ const ASSETS = {
 
 // Datos de servicios
 const SERVICIOS = [{
-  title: "Tarot & Vinito",
+  title: "Vinito & Tarot",
   description: "Encuentros íntimos para compartir una lectura de Tarot acompañada de una copa de vino.",
   bgImage: ASSETS.tarotyvino,
   link: "#vinito"
@@ -54,7 +54,7 @@ const SERVICIOS = [{
   link: "#pack"
 }, {
   title: "Lecturas",
-  description: "Lecturas individuales de tarot con enfoque canalizado",
+  description: "Lecturas individuales de tarot con enfoque canalizado.",
   bgImage: ASSETS.cielo,
   link: "#lecturas"
 }];
