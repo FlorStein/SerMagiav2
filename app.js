@@ -43,7 +43,7 @@ const ASSETS = {
 
 // Datos de servicios
 const SERVICIOS = [{
-  title: "Vinito & Tarot",
+  title: "Vinito y Tarot",
   description: "Encuentros íntimos para compartir una lectura de Tarot acompañada de una copa de vino.",
   bgImage: ASSETS.tarotyvino,
   link: "#vinito"
@@ -96,7 +96,7 @@ aspectos fundamentales de tu vida: tu energía actual, tus oportunidades
 financieras, recursos, comunicación, familia, proyectos, salud, trabajo,
 pareja, sexualidad, misión en la vida, profesión, vínculos e inconsciente.`,
   precio: '$20.000',
-  dur: '75 min'
+  dur: '90 min'
 }, {
   t: 'Tarot Akáshico',
   d: `Combina dos prácticas transformadoras para brindarte una experiencia
@@ -313,8 +313,8 @@ function ContactForm() {
     value: "",
     disabled: true
   }, "Seleccion\xE1 un servicio"), /*#__PURE__*/React.createElement("option", {
-    value: "Vinito & Tarot"
-  }, "Vinito & Tarot"), /*#__PURE__*/React.createElement("option", {
+    value: "Vinito y Tarot"
+  }, "Vinito y Tarot"), /*#__PURE__*/React.createElement("option", {
     value: "Apertura de Registros Ak\xE1shicos"
   }, "Apertura de Registros Ak\xE1shicos"), /*#__PURE__*/React.createElement("option", {
     value: "Lecturas"
@@ -373,7 +373,7 @@ function App() {
     className: "uppercase tracking-[0.25em] text-xs text-[#d980f9] mb-3"
   }, "Tarot \xB7 Akasha \xB7 Sanaci\xF3n"), /*#__PURE__*/React.createElement("h1", {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl leading-tight mb-4"
-  }, "Acompañamiento integral para tu  ", /*#__PURE__*/React.createElement("span", {
+  }, "Acompa\xF1amiento integral para tu ", /*#__PURE__*/React.createElement("span", {
     className: "text-[#d980f9]"
   }, "autoconocimiento")), /*#__PURE__*/React.createElement("p", {
     className: "mb-3 text-white font-bold leading-relaxed text-sm md:text-base"
@@ -404,7 +404,7 @@ function App() {
     className: " bg-[#3d1a66] text-[#000] p-6 md:p-10 text-center aura-effect"
   }, /*#__PURE__*/React.createElement("p", {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-5xl"
-  }, "\"Traé conciencia a tu cuerpo. Todo empieza con tu compromiso.\"")))), /*#__PURE__*/React.createElement("section", {
+  }, "\"Tra\xE9 conciencia a tu cuerpo. Todo empieza con tu compromiso.\"")))), /*#__PURE__*/React.createElement("section", {
     id: "servicios",
     className: "py-12 md:py-20",
     style: {
@@ -438,20 +438,18 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-3"
   }, "Vinito y Tarot"), /*#__PURE__*/React.createElement("p", {
     className: "text-white mb-4 text-lg md:text-xl"
-  }, "Encuentro l\xFAdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompa\xF1amiento para una noche \xFAnica. Las risas, el Malbec, la empat\xEDa y la resonancia de la red; juegan un papel fundamental en el evento que logr\xF3 que hable el alma y el coraz\xF3n antes que la mente y la raz\xF3n."), /*#__PURE__*/React.createElement("ul", {
-    className: "text-base md:text-lg space-y-2 text-white list-disc pl-5"
-  }, /*#__PURE__*/React.createElement("li", null, "Presencial (10 a 22 personas)."), /*#__PURE__*/React.createElement("li", null, "A domicilio 1: hasta 15 personas. Incluye vino, juegos y sobre de cartas + lectura por WhatsApp."), /*#__PURE__*/React.createElement("li", null, "A domicilio 2: hasta 30 personas. Incluye vino, juegos y sesi\xF3n para la/el anfitri\xF3n.")), /*#__PURE__*/React.createElement("div", {
+  }, "Encuentro l\xFAdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompa\xF1amiento para una noche \xFAnica. Las risas, el Malbec, la empat\xEDa y la resonancia de la red; juegan un papel fundamental en el evento que logr\xF3 que hable el alma y el coraz\xF3n antes que la mente y la raz\xF3n."), /*#__PURE__*/React.createElement("div", {
     className: "mt-5 flex gap-3"
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
-    className: "rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition"
+    className: "rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition text-center"
   }, "Pr\xF3ximo vinito"), /*#__PURE__*/React.createElement("a", {
     href: "#contacto",
-    className: "rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition"
-  }, "Tu Vinito & Tarot"), /*#__PURE__*/React.createElement("a", {
+    className: "rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition text-center"
+  }, "Tu Vinito y Tarot"), /*#__PURE__*/React.createElement("a", {
     href: "galeria-vinito.html",
-    className: "rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition"
-  }, "Espiar 🦋"))))), /*#__PURE__*/React.createElement("section", {
+    className: "rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition text-center"
+  }, "Espiar \uD83E\uDD8B"))))), /*#__PURE__*/React.createElement("section", {
     id: "pack",
     className: "py-8 md:py-16 min-h-[100svh] flex items-center",
     style: {
@@ -570,7 +568,7 @@ function App() {
     className: "rounded-3xl border bg-white/45 backdrop-blur p-8 md:p-10 shadow-sm"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "new-rocker-regular title-white glow-violet text-3xl mb-2"
-  }, "Turnos & Contacto"), /*#__PURE__*/React.createElement("p", {
+  }, "Turnos y Contacto"), /*#__PURE__*/React.createElement("p", {
     className: "text-[#5c007d]/80 mb-4"
   }, "Todos los servicios requieren se\xF1a para reservar; no reembolsable ante cancelaci\xF3n."), /*#__PURE__*/React.createElement(ContactForm, null)))), /*#__PURE__*/React.createElement("footer", {
     className: "pb-10 pt-6 border-t bg-[#8a0bd2] text-white border-[#8a0bd2]/20"

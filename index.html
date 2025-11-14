@@ -188,6 +188,17 @@
     position: relative;
     transition: all 0.3s ease;
     overflow: hidden;
+    background: rgba(217, 128, 249, 0.15) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  @media (max-width: 768px) {
+    #vinito a[href="#contacto"] {
+      background: rgba(0, 0, 0, 0.5) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
   }
   
   #vinito a[href="#contacto"]::before {

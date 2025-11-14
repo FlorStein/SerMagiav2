@@ -27,7 +27,7 @@ const ASSETS = {
 // Datos de servicios
 const SERVICIOS = [
   {
-    title: "Vinito & Tarot",
+    title: "Vinito y Tarot",
     description: "Encuentros íntimos para compartir una lectura de Tarot acompañada de una copa de vino.",
     bgImage: ASSETS.tarotyvino,
     link: "#vinito"
@@ -67,7 +67,7 @@ para descubrir la energía disponible para ti y lo que el futuro cercano tiene
 reservado. Trabajaremos con las casas zodiacales, abordando todos los
 aspectos fundamentales de tu vida: tu energía actual, tus oportunidades
 financieras, recursos, comunicación, familia, proyectos, salud, trabajo,
-pareja, sexualidad, misión en la vida, profesión, vínculos e inconsciente.`, precio:'$20.000', dur:'75 min'},
+pareja, sexualidad, misión en la vida, profesión, vínculos e inconsciente.`, precio:'$20.000', dur:'90 min'},
   {t:'Tarot Akáshico',d:`Combina dos prácticas transformadoras para brindarte una experiencia
 única de empoderamiento y crecimiento personal.
 El Tarot actúa como una valiosa herramienta que nos revela información
@@ -254,7 +254,7 @@ function ContactForm(){
         required
       >
         <option value="" disabled>Seleccioná un servicio</option>
-        <option value="Vinito & Tarot">Vinito & Tarot</option>
+        <option value="Vinito y Tarot">Vinito y Tarot</option>
         <option value="Apertura de Registros Akáshicos">Apertura de Registros Akáshicos</option>
         <option value="Lecturas">Lecturas</option>
         <option value="El Pack">El Pack</option>
@@ -326,7 +326,7 @@ function App(){
             </div>
             {/* <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow p-4 w-48">
               <p className="text-xs text-[#d980f9]/70">Próximo encuentro</p>
-              <p className="text-sm font-medium">Vinito & Tarot · cupos limitados</p>
+              <p className="text-sm font-medium">Vinito y Tarot · cupos limitados</p>
             </div> */}
           </div>
         </div>
@@ -361,15 +361,10 @@ function App(){
           <div className="md:ml-auto md:w-1/2">
             <h2 className="new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-3">Vinito y Tarot</h2>
             <p className="text-white mb-4 text-lg md:text-xl">Encuentro lúdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompañamiento para una noche única. Las risas, el Malbec, la empatía y la resonancia de la red; juegan un papel fundamental en el evento que logró que hable el alma y el corazón antes que la mente y la razón.</p>
-            <ul className="text-base md:text-lg space-y-2 text-white list-disc pl-5">
-              <li>Presencial (10 a 22 personas).</li>
-              <li>A domicilio 1: hasta 15 personas. Incluye vino, juegos y sobre de cartas + lectura por WhatsApp.</li>
-              <li>A domicilio 2: hasta 30 personas. Incluye vino, juegos y sesión para la/el anfitrión.</li>
-            </ul>
             <div className="mt-5 flex gap-3">
-              <a href="https://wa.me/5491168040649" className="rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition">Próximo vinito</a>
-              <a href="#contacto" className="rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition">Tu Vinito & Tarot</a>
-              <a href="galeria-vinito.html" className="rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition">Espiar 🦋</a>
+              <a href="https://wa.me/5491168040649" className="rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition text-center">Próximo vinito</a>
+              <a href="#contacto" className="rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition text-center">Tu Vinito y Tarot</a>
+              <a href="galeria-vinito.html" className="rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition text-center">Espiar 🦋</a>
             </div>
           </div>
         </div>
@@ -476,7 +471,7 @@ function App(){
       >
         <div className="mx-auto max-w-2xl px-4">
           <div className="rounded-3xl border bg-white/45 backdrop-blur p-8 md:p-10 shadow-sm">
-            <h2 className="new-rocker-regular title-white glow-violet text-3xl mb-2">Turnos & Contacto</h2>
+            <h2 className="new-rocker-regular title-white glow-violet text-3xl mb-2">Turnos y Contacto</h2>
             <p className="text-[#5c007d]/80 mb-4">Todos los servicios requieren seña para reservar; no reembolsable ante cancelación.</p>
             <ContactForm/>
           </div>
