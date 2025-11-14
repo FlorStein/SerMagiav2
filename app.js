@@ -437,7 +437,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-3"
   }, "Vinito y Tarot"), /*#__PURE__*/React.createElement("p", {
     className: "text-white mb-4 text-lg md:text-xl"
-  }, "Bloque de 2h30 para sumergirte en el Tarot a trav\xE9s de din\xE1micas l\xFAdicas, risas y vino."), /*#__PURE__*/React.createElement("ul", {
+  }, "Encuentro lúdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompañamiento para una noche única. Las risas, el Malbec, la empatía y la resonancia de la red; juegan un papel fundamental en el evento que logró que hable el alma y el corazón antes que la mente y la razón."), /*#__PURE__*/React.createElement("ul", {
     className: "text-base md:text-lg space-y-2 text-white list-disc pl-5"
   }, /*#__PURE__*/React.createElement("li", null, "Presencial (10 a 22 personas)."), /*#__PURE__*/React.createElement("li", null, "A domicilio 1: hasta 15 personas. Incluye vino, juegos y sobre de cartas + lectura por WhatsApp."), /*#__PURE__*/React.createElement("li", null, "A domicilio 2: hasta 30 personas. Incluye vino, juegos y sesi\xF3n para la/el anfitri\xF3n.")), /*#__PURE__*/React.createElement("div", {
     className: "mt-5 flex gap-3"

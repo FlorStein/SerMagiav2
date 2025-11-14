@@ -359,7 +359,7 @@ function App(){
         <div className="mx-auto max-w-6xl px-4 w-full">
           <div className="md:ml-auto md:w-1/2">
             <h2 className="new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-3">Vinito y Tarot</h2>
-            <p className="text-white mb-4 text-lg md:text-xl">Bloque de 2h30 para sumergirte en el Tarot a través de dinámicas lúdicas, risas y vino.</p>
+            <p className="text-white mb-4 text-lg md:text-xl">Encuentro lúdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompañamiento para una noche única. Las risas, el Malbec, la empatía y la resonancia de la red; juegan un papel fundamental en el evento que logró que hable el alma y el corazón antes que la mente y la razón.</p>
             <ul className="text-base md:text-lg space-y-2 text-white list-disc pl-5">
               <li>Presencial (10 a 22 personas).</li>
               <li>A domicilio 1: hasta 15 personas. Incluye vino, juegos y sobre de cartas + lectura por WhatsApp.</li>
