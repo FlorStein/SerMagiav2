@@ -11,7 +11,7 @@
  */
 (function(){
   // ⚠️ Pegá acá tu URL pública de CSV de Google Sheets (Archivo → Publicar en la web)
-  var SHEET_CSV_URL = window.SER_MAGIA_SHEET_CSV_URL || "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNJARxZ_CBiwnjGUDOonIqTqRp8xjrtfhltQRp-ptEbcga2Qxb9Apg2ecALLLM8g/pub?gid=396204798&single=true&output=csv";
+  var SHEET_CSV_URL = window.SER_MAGIA_SHEET_CSV_URL || "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNJARxZ_CBiwnjGUDOonIqTqRp8xjrtfhltQRp-ptEbcga2Qxb9Apg2ecALLLM8g/pub?output=csv";
 
   // Si no está configurada, no hacemos nada (app.js usará el fallback hardcodeado)
   if (!SHEET_CSV_URL || SHEET_CSV_URL.indexOf("http") !== 0) {
