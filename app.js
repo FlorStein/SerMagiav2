@@ -547,7 +547,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-5xl mb-6 text-center"
   }, "Pr\xF3ximas fechas"), /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-3 gap-6"
-  }, AGENDA_EVENTOS.map((e, i) => /*#__PURE__*/React.createElement(EventoCard, _extends({
+  }, (window.AGENDA_EVENTOS || AGENDA_EVENTOS).map((e, i) => /*#__PURE__*/React.createElement(EventoCard, _extends({
     key: i
   }, e)))))), /*#__PURE__*/React.createElement("section", {
     id: "contacto",

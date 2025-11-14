@@ -451,7 +451,7 @@ function App(){
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="new-rocker-regular title-white glow-violet text-5xl mb-6 text-center">Próximas fechas</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {AGENDA_EVENTOS.map((e,i)=>(
+            {(window.AGENDA_EVENTOS || AGENDA_EVENTOS).map((e,i)=>(
               <EventoCard key={i} {...e} />
             ))}
           </div>
