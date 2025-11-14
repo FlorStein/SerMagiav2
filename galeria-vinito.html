@@ -63,6 +63,19 @@
         transform 0.2s ease,
         box-shadow 0.2s ease;
       transform: rotate(0deg);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) rotate(0deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
     }
 
     .polaroid img {
@@ -90,13 +103,94 @@
         0 0 0 1px rgba(255, 255, 255, 0.35);
     }
 
+    /* Loader */
+    #gallery-loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      gap: 2.5rem;
+    }
+
+    #gallery-loader.hidden {
+      display: none;
+    }
+
+    .loader-eye {
+      width: 280px;
+      height: auto;
+      position: relative;
+      animation: float 3s ease-in-out infinite, fadeInOut 2.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(217, 128, 249, 0.7));
+    }
+
+    .loader-eye::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(217, 128, 249, 0.4) 0%, rgba(138, 11, 210, 0.2) 40%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+      animation: glowPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { 
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.4;
+      }
+      50% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { 
+        opacity: 0.3;
+      }
+      50% { 
+        opacity: 1;
+      }
+    }
+
+    .loader-text {
+      font-family: 'Caveat', cursive;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(217, 128, 249, 0.9);
+      animation: fadeInOut 2.5s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      .loader-eye {
+        width: 200px;
+        height: auto;
+      }
+      
+      .loader-text {
+        font-size: 2.5rem;
+      }
+    }
+
     /* Rotaciones sutiles y aleatorias para cada polaroid */
-    .polaroid:nth-child(6n+1) { transform: rotate(-2deg); }
-    .polaroid:nth-child(6n+2) { transform: rotate(1deg); }
-    .polaroid:nth-child(6n+3) { transform: rotate(-1deg); }
-    .polaroid:nth-child(6n+4) { transform: rotate(2deg); }
-    .polaroid:nth-child(6n+5) { transform: rotate(-1.5deg); }
-    .polaroid:nth-child(6n+6) { transform: rotate(1.5deg); }
+    .polaroid:nth-child(6n+1) { transform: rotate(-2deg); animation-delay: 0.05s; }
+    .polaroid:nth-child(6n+2) { transform: rotate(1deg); animation-delay: 0.1s; }
+    .polaroid:nth-child(6n+3) { transform: rotate(-1deg); animation-delay: 0.15s; }
+    .polaroid:nth-child(6n+4) { transform: rotate(2deg); animation-delay: 0.2s; }
+    .polaroid:nth-child(6n+5) { transform: rotate(-1.5deg); animation-delay: 0.25s; }
+    .polaroid:nth-child(6n+6) { transform: rotate(1.5deg); animation-delay: 0.3s; }
 
     /* Responsive: en tablet 2 columnas */
     @media (max-width: 1024px) {
@@ -247,6 +341,12 @@
 
     <!-- Collage -->
     <section aria-label="Galería de fotos Vinito y Tarot">
+      <!-- Loader -->
+      <div id="gallery-loader">
+        <img src="./assets/ojo.png" alt="Cargando..." class="loader-eye" />
+        <p class="loader-text">canalizando...</p>
+      </div>
+      
       <div id="gallery-collage"></div>
     </section>
 
@@ -359,6 +459,8 @@
 
     function renderCollage(images) {
       const gallery = document.getElementById('gallery-collage');
+      const loader = document.getElementById('gallery-loader');
+      
       gallery.innerHTML = '';
 
       images.forEach(function (img, index) {
@@ -366,12 +468,23 @@
         const card = createPolaroidElement(img, index, images);
         gallery.appendChild(card);
       });
+      
+      // Ocultar loader cuando las imágenes estén renderizadas
+      if (loader) {
+        loader.classList.add('hidden');
+      }
     }
 
     async function loadGallery() {
       const errorBox = document.getElementById('error');
+      const loader = document.getElementById('gallery-loader');
 
       function showError(msg) {
+        // Ocultar loader
+        if (loader) {
+          loader.classList.add('hidden');
+        }
+        
         if (errorBox) {
           errorBox.classList.remove('hidden');
           if (msg) {
