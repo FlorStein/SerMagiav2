@@ -245,13 +245,21 @@ function ContactForm(){
           placeholder="Email"
         />
       </div>
-      <input 
+      <select 
         name="asunto"
         value={formData.asunto} 
         onChange={handleChange} 
-        className="rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60" 
-        placeholder="Asunto"
-      />
+        className="rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60"
+        required
+      >
+        <option value="" disabled>Seleccioná un servicio</option>
+        <option value="Vinito & Tarot">Vinito & Tarot</option>
+        <option value="Apertura de Registros Akáshicos">Apertura de Registros Akáshicos</option>
+        <option value="Lecturas">Lecturas</option>
+        <option value="El Pack">El Pack</option>
+        <option value="Formación Tarot">Formación Tarot</option>
+        <option value="Constelaciones Álmicas">Constelaciones Álmicas</option>
+      </select>
       <textarea 
         name="mensaje"
         value={formData.mensaje} 
@@ -461,10 +469,6 @@ function App(){
           <div className="rounded-3xl border bg-white/45 backdrop-blur p-8 md:p-10 shadow-sm">
             <h2 className="new-rocker-regular title-white glow-violet text-3xl mb-2">Turnos & Contacto</h2>
             <p className="text-[#5c007d]/80 mb-4">Todos los servicios requieren seña para reservar; no reembolsable ante cancelación.</p>
-            <div className="flex flex-wrap gap-3 mb-6">
-              <a href="https://wa.me/5491168040649" className="rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm">Reservar por WhatsApp</a>
-              <a href="mailto:hola@sermagia.tarot" className="rounded-full border px-5 py-3 text-sm">Escribirme por mail</a>
-            </div>
             <ContactForm/>
           </div>
         </div>

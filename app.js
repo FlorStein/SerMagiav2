@@ -83,7 +83,7 @@ const LECTURAS = [{
   d: `En este espacio mágico y creativo, te invito a sumergirte en un viaje profundo
 hacia tu árbol genealógico. Es un encuentro transformador donde
 exploraremos la poderosa información ancestral que reside en vos y que te
-permitirá modificar, transformar y sanar aspectos de tu vida. Ideal para trabajar con los bloqueos, patrones de repetición o talón de Aquiles.`,
+permitirá modificar, transformar y sanar aspectos de tu vida.`,
   precio: '$22.000',
   dur: '90 min'
 }, {
@@ -108,7 +108,7 @@ oportunidades que se presentan en tu camino.`,
 }];
 
 // Datos de agenda
-const AGENDA_EVENTOS = window.AGENDA_EVENTOS && window.AGENDA_EVENTOS.length ? window.AGENDA_EVENTOS : [{
+const AGENDA_EVENTOS = [{
   f: 'Sáb 16 Nov · 18:00',
   t: 'Vinito y Tarot (Microcentro)',
   cupos: 'Quedan 6'
@@ -302,13 +302,28 @@ function ContactForm() {
     onChange: handleChange,
     className: "rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60",
     placeholder: "Email"
-  })), /*#__PURE__*/React.createElement("input", {
+  })), /*#__PURE__*/React.createElement("select", {
     name: "asunto",
     value: formData.asunto,
     onChange: handleChange,
     className: "rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60",
-    placeholder: "Asunto"
-  }), /*#__PURE__*/React.createElement("textarea", {
+    required: true
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "",
+    disabled: true
+  }, "Seleccion\xE1 un servicio"), /*#__PURE__*/React.createElement("option", {
+    value: "Vinito & Tarot"
+  }, "Vinito & Tarot"), /*#__PURE__*/React.createElement("option", {
+    value: "Apertura de Registros Ak\xE1shicos"
+  }, "Apertura de Registros Ak\xE1shicos"), /*#__PURE__*/React.createElement("option", {
+    value: "Lecturas"
+  }, "Lecturas"), /*#__PURE__*/React.createElement("option", {
+    value: "El Pack"
+  }, "El Pack"), /*#__PURE__*/React.createElement("option", {
+    value: "Formaci\xF3n Tarot"
+  }, "Formaci\xF3n Tarot"), /*#__PURE__*/React.createElement("option", {
+    value: "Constelaciones \xC1lmicas"
+  }, "Constelaciones \xC1lmicas")), /*#__PURE__*/React.createElement("textarea", {
     name: "mensaje",
     value: formData.mensaje,
     onChange: handleChange,
@@ -357,7 +372,7 @@ function App() {
     className: "uppercase tracking-[0.25em] text-xs text-[#d980f9] mb-3"
   }, "Tarot \xB7 Akasha \xB7 Sanaci\xF3n"), /*#__PURE__*/React.createElement("h1", {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl leading-tight mb-4"
-  }, "Acompa\xF1amiento integral para tu ", /*#__PURE__*/React.createElement("span", {
+  }, "Acompa\xF1amiento amoroso para tu ", /*#__PURE__*/React.createElement("span", {
     className: "text-[#d980f9]"
   }, "autoconocimiento")), /*#__PURE__*/React.createElement("p", {
     className: "mb-3 text-white font-bold leading-relaxed text-sm md:text-base"
@@ -388,7 +403,7 @@ function App() {
     className: " bg-[#3d1a66] text-[#000] p-6 md:p-10 text-center aura-effect"
   }, /*#__PURE__*/React.createElement("p", {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-5xl"
-  }, "\"Tra\xE9 conciencia a tu cuerpo. Todo empieza con tu compromiso.\"")))), /*#__PURE__*/React.createElement("section", {
+  }, "\"Tra\xE9 ternura a tu cuerpo. Todo empieza en tu respiraci\xF3n.\"")))), /*#__PURE__*/React.createElement("section", {
     id: "servicios",
     className: "py-12 md:py-20",
     style: {
@@ -422,14 +437,14 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-3"
   }, "Vinito y Tarot"), /*#__PURE__*/React.createElement("p", {
     className: "text-white mb-4 text-lg md:text-xl"
-  }, "Encuentro lúdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompañamiento para una noche única. Las risas, el Malbec, la empatía y la resonancia de la red; juegan un papel fundamental en el evento que logró que hable el alma y el corazón antes que la mente y la razón."), /*#__PURE__*/React.createElement("ul", {
+  }, "Bloque de 2h30 para sumergirte en el Tarot a trav\xE9s de din\xE1micas l\xFAdicas, risas y vino."), /*#__PURE__*/React.createElement("ul", {
     className: "text-base md:text-lg space-y-2 text-white list-disc pl-5"
   }, /*#__PURE__*/React.createElement("li", null, "Presencial (10 a 22 personas)."), /*#__PURE__*/React.createElement("li", null, "A domicilio 1: hasta 15 personas. Incluye vino, juegos y sobre de cartas + lectura por WhatsApp."), /*#__PURE__*/React.createElement("li", null, "A domicilio 2: hasta 30 personas. Incluye vino, juegos y sesi\xF3n para la/el anfitri\xF3n.")), /*#__PURE__*/React.createElement("div", {
     className: "mt-5 flex gap-3"
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
     className: "rounded-full bg-[#d980f9] text-[#3d1a66] font-semibold px-5 py-3 text-sm hover:opacity-90 transition"
-  }, "Próximo vinito"), /*#__PURE__*/React.createElement("a", {
+  }, "Pr\xF3ximo vinito"), /*#__PURE__*/React.createElement("a", {
     href: "#contacto",
     className: "rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm hover:bg-[#d980f9] hover:text-[#3d1a66] transition"
   }, "Tu Vinito & Tarot"), /*#__PURE__*/React.createElement("a", {
@@ -452,7 +467,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4"
   }, "El Pack \xB7 Un viaje de autoconocimiento"), /*#__PURE__*/React.createElement("p", {
     className: "text-base md:text-lg text-[#d980f9]/80 mb-6 max-w-prose"
-  }, "El pack es la combinación perfecta para que puedas alinearte con tu presente, sin olvidar de donde venís y sabiendo a donde querés ir."), /*#__PURE__*/React.createElement("div", {
+  }, "Dirigido a almas inquietas que desean transformaci\xF3n positiva. Metodolog\xEDa en 5 componentes:"), /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-5 gap-4 text-base mb-6"
   }, PACK_COMPONENTS.map((k, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -492,13 +507,13 @@ function App() {
     className: "order-2 md:order-1"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "new-rocker-regular title-white glow-violet text-7xl mb-3"
-  }, "Apertura de Registros Akáshicos"), /*#__PURE__*/React.createElement("ul", {
+  }, "Apertura de Registros Ak\xE1shicos."), /*#__PURE__*/React.createElement("ul", {
     className: "text-sm space-y-3 text-[#d980f9]/80 list-disc pl-5"
   }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
     className: "font-medium text-base"
-  }, "Apertura de Registros Akáshicos:"), " Canalización a través de tus guías y maestros. Acceder al Akasha es hacerte portador de la información de tu alma para sanar, conocerte y alivianar tu andar."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
+  }, "Formaci\xF3n de Tarot para la Evoluci\xF3n:"), " vivencial y pr\xE1ctica (Arcanos Mayores y Menores) para lecturas personales y a otrxs."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
     className: "font-medium text-base"
-  }, "Constelaciones Álmicas:"), " Es la fusión de la apertura de registros Akáshicos y las constelaciones familiares individuales. Dinámica conjunta con la Licenciada Lis Carolina Poch. Encuentro presencial de 60 minutos en Espacio Cuerpo y Alma, ubicado en Vicente López.")), /*#__PURE__*/React.createElement("a", {
+  }, "Iniciaci\xF3n en Registros Ak\xE1shicos \u2013 Nivel 1 y 2:"), " herramienta de sanaci\xF3n personal para acceder al archivo de tu Alma.")), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649?text=Hola,%20quiero%20un%20turno%20para%20abrir%20mis%20Registros%20Ak%C3%A1shicos",
     className: "mt-5 inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
   }, "Reservar por WhatsApp")), /*#__PURE__*/React.createElement("div", {
@@ -532,7 +547,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-5xl mb-6 text-center"
   }, "Pr\xF3ximas fechas"), /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-3 gap-6"
-  }, (window.AGENDA_EVENTOS || AGENDA_EVENTOS).map((e, i) => /*#__PURE__*/React.createElement(EventoCard, _extends({
+  }, AGENDA_EVENTOS.map((e, i) => /*#__PURE__*/React.createElement(EventoCard, _extends({
     key: i
   }, e)))))), /*#__PURE__*/React.createElement("section", {
     id: "contacto",
@@ -551,16 +566,8 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-3xl mb-2"
   }, "Turnos & Contacto"), /*#__PURE__*/React.createElement("p", {
     className: "text-[#5c007d]/80 mb-4"
-  }, "Todos los servicios requieren se\xF1a para reservar; no reembolsable ante cancelaci\xF3n."), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-wrap gap-3 mb-6"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "https://wa.me/5491168040649",
-    className: "rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
-  }, "Reservar por WhatsApp"), /*#__PURE__*/React.createElement("a", {
-    href: "mailto:hola@sermagia.tarot",
-    className: "rounded-full border px-5 py-3 text-sm"
-  }, "Escribirme por mail")), /*#__PURE__*/React.createElement(ContactForm, null)))), /*#__PURE__*/React.createElement("footer", {
-    className: "py-6 border-t bg-[#8a0bd2] text-white border-[#8a0bd2]/20"
+  }, "Todos los servicios requieren se\xF1a para reservar; no reembolsable ante cancelaci\xF3n."), /*#__PURE__*/React.createElement(ContactForm, null)))), /*#__PURE__*/React.createElement("footer", {
+    className: "pb-10 pt-6 border-t bg-[#8a0bd2] text-white border-[#8a0bd2]/20"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-6"
   }, /*#__PURE__*/React.createElement("p", {
@@ -575,33 +582,5 @@ function App() {
     className: "text-white hover:text-[#f4dbff]"
   }, "Pol\xEDtica de privacidad")))));
 }
-
-// Esperar a que termine la carga de agenda antes de renderizar
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-// Si existe la promesa del loader, esperar; sino renderizar inmediatamente
-if (window.AGENDA_LOADER_PROMISE) {
-  window.AGENDA_LOADER_PROMISE.finally(function() {
-    // Recomputar AGENDA_EVENTOS después de que cargue (o falle)
-    const AGENDA_EVENTOS_FINAL = window.AGENDA_EVENTOS && window.AGENDA_EVENTOS.length ? window.AGENDA_EVENTOS : [{
-      f: 'Sáb 16 Nov · 18:00',
-      t: 'Vinito y Tarot (Microcentro)',
-      cupos: 'Quedan 6'
-    }, {
-      f: 'Vie 29 Nov · 19:00',
-      t: 'Vinito y Tarot a domicilio',
-      cupos: 'Cupos 10–30'
-    }, {
-      f: 'Sáb 14 Dic · 10:00',
-      t: 'Formación Tarot – Módulo 1',
-      cupos: 'Abierta inscripción'
-    }];
-    
-    // Actualizar variable global para que el componente use la correcta
-    window.AGENDA_EVENTOS = AGENDA_EVENTOS_FINAL;
-    
-    root.render(/*#__PURE__*/React.createElement(App, null));
-  });
-} else {
-  root.render(/*#__PURE__*/React.createElement(App, null));
-}
+root.render(/*#__PURE__*/React.createElement(App, null));
