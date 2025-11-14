@@ -83,8 +83,8 @@ const LECTURAS = [{
   d: `En este espacio mágico y creativo, te invito a sumergirte en un viaje profundo
 hacia tu árbol genealógico. Es un encuentro transformador donde
 exploraremos la poderosa información ancestral que reside en vos y que te
-permitirá modificar, transformar y sanar aspectos de tu vida. 
-Ideal para trabajar con los bloqueos, patrones de repetición o talón de Aquiles. `,
+permitirá modificar, transformar y sanar aspectos de tu vida.
+Ideal para trabajar con los bloqueos, patrones de repetición o talón de Aquiles.`,
   precio: '$22.000',
   dur: '90 min'
 }, {
@@ -438,7 +438,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-3"
   }, "Vinito y Tarot"), /*#__PURE__*/React.createElement("p", {
     className: "text-white mb-4 text-lg md:text-xl"
-  }, "Encuentro lúdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompañamiento para una noche única. Las risas, el Malbec, la empatía y la resonancia de la red; juegan un papel fundamental en el evento que logró que hable el alma y el corazón antes que la mente y la razón."), /*#__PURE__*/React.createElement("ul", {
+  }, "Encuentro l\xFAdico-vivencial para atender todos tus sentimientos. Hicimos de la dupla Vinito y Tarot el mejor acompa\xF1amiento para una noche \xFAnica. Las risas, el Malbec, la empat\xEDa y la resonancia de la red; juegan un papel fundamental en el evento que logr\xF3 que hable el alma y el coraz\xF3n antes que la mente y la raz\xF3n."), /*#__PURE__*/React.createElement("ul", {
     className: "text-base md:text-lg space-y-2 text-white list-disc pl-5"
   }, /*#__PURE__*/React.createElement("li", null, "Presencial (10 a 22 personas)."), /*#__PURE__*/React.createElement("li", null, "A domicilio 1: hasta 15 personas. Incluye vino, juegos y sobre de cartas + lectura por WhatsApp."), /*#__PURE__*/React.createElement("li", null, "A domicilio 2: hasta 30 personas. Incluye vino, juegos y sesi\xF3n para la/el anfitri\xF3n.")), /*#__PURE__*/React.createElement("div", {
     className: "mt-5 flex gap-3"
@@ -468,7 +468,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4"
   }, "El Pack \xB7 Un viaje de autoconocimiento"), /*#__PURE__*/React.createElement("p", {
     className: "text-base md:text-lg text-[#d980f9]/80 mb-6 max-w-prose"
-  }, "El pack es la combinación perfecta para que puedas alinearte con tu presente, sin olvidar de donde venís y sabiendo a donde querés ir"), /*#__PURE__*/React.createElement("div", {
+  }, "El pack es la combinaci\xF3n perfecta para que puedas alinearte con tu presente, sin olvidar de donde ven\xEDs y sabiendo a donde quer\xE9s ir."), /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-5 gap-4 text-base mb-6"
   }, PACK_COMPONENTS.map((k, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -507,17 +507,22 @@ function App() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "order-2 md:order-1"
   }, /*#__PURE__*/React.createElement("h2", {
-    className: "new-rocker-regular title-white glow-violet text-7xl mb-3"
-  }, "Apertura de Registros Ak\xE1shicos."), /*#__PURE__*/React.createElement("ul", {
-    className: "text-sm space-y-3 text-[#d980f9]/80 list-disc pl-5"
-  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
-    className: "font-medium text-base"
-  }, "Formaci\xF3n de Tarot para la Evoluci\xF3n:"), " vivencial y pr\xE1ctica (Arcanos Mayores y Menores) para lecturas personales y a otrxs."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
-    className: "font-medium text-base"
-  }, "Iniciaci\xF3n en Registros Ak\xE1shicos \u2013 Nivel 1 y 2:"), " herramienta de sanaci\xF3n personal para acceder al archivo de tu Alma.")), /*#__PURE__*/React.createElement("a", {
+    className: "new-rocker-regular title-white glow-violet text-5xl mb-4"
+  }, "Apertura de Registros Ak\xE1shicos"), /*#__PURE__*/React.createElement("p", {
+    className: "text-base text-white/90 mb-4"
+  }, "Canalizaci\xF3n a trav\xE9s de tus gu\xEDas y maestros. Acceder al Akasha es hacerte portador de la informaci\xF3n de tu alma para sanar, conocerte y alivianar tu andar."), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649?text=Hola,%20quiero%20un%20turno%20para%20abrir%20mis%20Registros%20Ak%C3%A1shicos",
-    className: "mt-5 inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
-  }, "Reservar por WhatsApp")), /*#__PURE__*/React.createElement("div", {
+    className: "inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm mb-8"
+  }, "Reservar turno"), /*#__PURE__*/React.createElement("h2", {
+    className: "new-rocker-regular title-white glow-violet text-5xl mb-4 mt-8"
+  }, "Constelaciones \xC1lmicas"), /*#__PURE__*/React.createElement("p", {
+    className: "text-base text-white/90 mb-2"
+  }, "Es la fusi\xF3n de la apertura de registros Ak\xE1shicos y las constelaciones familiares individuales. Din\xE1mica conjunta con la Licenciada Lis Carolina Poch."), /*#__PURE__*/React.createElement("p", {
+    className: "text-sm text-[#d980f9]/80 mb-4"
+  }, "Encuentro presencial de 60 minutos en Espacio Cuerpo y Alma, ubicado en Vicente L\xF3pez."), /*#__PURE__*/React.createElement("a", {
+    href: "#contacto",
+    className: "inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
+  }, "Consultar disponibilidad")), /*#__PURE__*/React.createElement("div", {
     className: "order-1 md:order-2"
   }, /*#__PURE__*/React.createElement("div", {
     className: "aspect-[4/5] rounded-3xl overflow-hidden shadow-sm flex items-center justify-center bg-black/5 relative"

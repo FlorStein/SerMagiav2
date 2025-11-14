@@ -419,12 +419,20 @@ function App(){
   <section id="formacion" className="py-8 md:py-16 bg-black">
         <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-8 items-center">
           <div className="order-2 md:order-1">
-            <h2 className="new-rocker-regular title-white glow-violet text-7xl mb-3">Apertura de Registros Akáshicos.</h2>
-            <ul className="text-sm space-y-3 text-[#d980f9]/80 list-disc pl-5">
-              <li><span className="font-medium text-base">Formación de Tarot para la Evolución:</span> vivencial y práctica (Arcanos Mayores y Menores) para lecturas personales y a otrxs.</li>
-              <li><span className="font-medium text-base">Iniciación en Registros Akáshicos – Nivel 1 y 2:</span> herramienta de sanación personal para acceder al archivo de tu Alma.</li>
-            </ul>
-            <a href="https://wa.me/5491168040649?text=Hola,%20quiero%20un%20turno%20para%20abrir%20mis%20Registros%20Ak%C3%A1shicos" className="mt-5 inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm">Reservar por WhatsApp</a>
+            <h2 className="new-rocker-regular title-white glow-violet text-5xl mb-4">Apertura de Registros Akáshicos</h2>
+            <p className="text-base text-white/90 mb-4">
+              Canalización a través de tus guías y maestros. Acceder al Akasha es hacerte portador de la información de tu alma para sanar, conocerte y alivianar tu andar.
+            </p>
+            <a href="https://wa.me/5491168040649?text=Hola,%20quiero%20un%20turno%20para%20abrir%20mis%20Registros%20Ak%C3%A1shicos" className="inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm mb-8">Reservar turno</a>
+            
+            <h2 className="new-rocker-regular title-white glow-violet text-5xl mb-4 mt-8">Constelaciones Álmicas</h2>
+            <p className="text-base text-white/90 mb-2">
+              Es la fusión de la apertura de registros Akáshicos y las constelaciones familiares individuales. Dinámica conjunta con la Licenciada Lis Carolina Poch.
+            </p>
+            <p className="text-sm text-[#d980f9]/80 mb-4">
+              Encuentro presencial de 60 minutos en Espacio Cuerpo y Alma, ubicado en Vicente López.
+            </p>
+            <a href="#contacto" className="inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm">Consultar disponibilidad</a>
           </div>
           <div className="order-1 md:order-2">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-sm flex items-center justify-center bg-black/5 relative">
