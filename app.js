@@ -451,7 +451,7 @@ function App() {
   }, "Tu Vinito & Tarot"), /*#__PURE__*/React.createElement("a", {
     href: "galeria-vinito.html",
     className: "rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition"
-  }, "Espiar"))))), /*#__PURE__*/React.createElement("section", {
+  }, "Espiar 🦋"))))), /*#__PURE__*/React.createElement("section", {
     id: "pack",
     className: "py-8 md:py-16 min-h-[100svh] flex items-center",
     style: {
