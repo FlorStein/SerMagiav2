@@ -83,7 +83,8 @@ const LECTURAS = [{
   d: `En este espacio mágico y creativo, te invito a sumergirte en un viaje profundo
 hacia tu árbol genealógico. Es un encuentro transformador donde
 exploraremos la poderosa información ancestral que reside en vos y que te
-permitirá modificar, transformar y sanar aspectos de tu vida.`,
+permitirá modificar, transformar y sanar aspectos de tu vida. 
+Ideal para trabajar con los bloqueos, patrones de repetición o talón de Aquiles. `,
   precio: '$22.000',
   dur: '90 min'
 }, {
@@ -467,7 +468,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4"
   }, "El Pack \xB7 Un viaje de autoconocimiento"), /*#__PURE__*/React.createElement("p", {
     className: "text-base md:text-lg text-[#d980f9]/80 mb-6 max-w-prose"
-  }, "Dirigido a almas inquietas que desean transformaci\xF3n positiva. Metodolog\xEDa en 5 componentes:"), /*#__PURE__*/React.createElement("div", {
+  }, "El pack es la combinación perfecta para que puedas alinearte con tu presente, sin olvidar de donde venís y sabiendo a donde querés ir"), /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-5 gap-4 text-base mb-6"
   }, PACK_COMPONENTS.map((k, i) => /*#__PURE__*/React.createElement("div", {
     key: i,

@@ -60,7 +60,8 @@ const LECTURAS = [
   {t:'Tarot Genealógico',d:`En este espacio mágico y creativo, te invito a sumergirte en un viaje profundo
 hacia tu árbol genealógico. Es un encuentro transformador donde
 exploraremos la poderosa información ancestral que reside en vos y que te
-permitirá modificar, transformar y sanar aspectos de tu vida.`, precio:'$22.000', dur:'90 min'},
+permitirá modificar, transformar y sanar aspectos de tu vida.
+Ideal para trabajar con los bloqueos, patrones de repetición o talón de Aquiles.`, precio:'$22.000', dur:'90 min'},
   {t:'Tarot Anual',d:`En este enriquecedor y nutritivo encuentro, te ofreceré una oportunidad única
 para descubrir la energía disponible para ti y lo que el futuro cercano tiene
 reservado. Trabajaremos con las casas zodiacales, abordando todos los
@@ -379,7 +380,7 @@ function App(){
         <div className="mx-auto max-w-6xl px-4">
           <div className="rounded-3xl bg-white/80 backdrop-blur p-6 md:p-10 shadow">
             <h2 className="new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4">El Pack · Un viaje de autoconocimiento</h2>
-            <p className="text-base md:text-lg text-[#d980f9]/80 mb-6 max-w-prose">Dirigido a almas inquietas que desean transformación positiva. Metodología en 5 componentes:</p>
+            <p className="text-base md:text-lg text-[#d980f9]/80 mb-6 max-w-prose">El pack es la combinación perfecta para que puedas alinearte con tu presente, sin olvidar de donde venís y sabiendo a donde querés ir.</p>
             <div className="grid md:grid-cols-5 gap-4 text-base mb-6">
               {PACK_COMPONENTS.map((k,i)=>(
                 <div key={i} className="rounded-2xl border bg-white p-4">
