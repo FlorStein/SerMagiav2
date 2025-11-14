@@ -164,7 +164,7 @@ const LecturaCard = React.memo(({
   className: "pb-12"
 }, /*#__PURE__*/React.createElement("p", {
   className: "text-xs font-bold uppercase tracking-wide text-[#350352] mb-2"
-}, "Encuentro"), /*#__PURE__*/React.createElement("h3", {
+}, "Encuentro presencial o virtual"), /*#__PURE__*/React.createElement("h3", {
   className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-1 text-[#8a0bd2]"
 }, t), /*#__PURE__*/React.createElement("p", {
   className: "text-xs md:text-sm text-[#350352]/80 font-semibold"

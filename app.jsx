@@ -115,7 +115,7 @@ const ServiceCard = React.memo(({ title, description, bgImage, link }) => (
 const LecturaCard = React.memo(({ t, d, precio, dur }) => (
   <article className="rounded-3xl border bg-white/65 shadow-sm p-6 relative">
     <div className="pb-12">
-      <p className="text-xs font-bold uppercase tracking-wide text-[#350352] mb-2">Encuentro</p>
+      <p className="text-xs font-bold uppercase tracking-wide text-[#350352] mb-2">Encuentro presencial o virtual</p>
       <h3 className="new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-1 text-[#8a0bd2]">{t}</h3>
       <p className="text-xs md:text-sm text-[#350352]/80 font-semibold">{d}</p>
     </div>
