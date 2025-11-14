@@ -54,7 +54,7 @@ const SERVICIOS = [{
   link: "#pack"
 }, {
   title: "Lecturas",
-  description: "Lecturas individuales de tarot con enfoque canalizado.",
+  description: "Lecturas individuales de tarot con enfoque canalizado",
   bgImage: ASSETS.cielo,
   link: "#lecturas"
 }];
