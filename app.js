@@ -373,7 +373,7 @@ function App() {
     className: "uppercase tracking-[0.25em] text-xs text-[#d980f9] mb-3"
   }, "Tarot \xB7 Akasha \xB7 Sanaci\xF3n"), /*#__PURE__*/React.createElement("h1", {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-4xl leading-tight mb-4"
-  }, "Acompa\xF1amiento amoroso para tu ", /*#__PURE__*/React.createElement("span", {
+  }, "Acompañamiento integral para tu  ", /*#__PURE__*/React.createElement("span", {
     className: "text-[#d980f9]"
   }, "autoconocimiento")), /*#__PURE__*/React.createElement("p", {
     className: "mb-3 text-white font-bold leading-relaxed text-sm md:text-base"
@@ -404,7 +404,7 @@ function App() {
     className: " bg-[#3d1a66] text-[#000] p-6 md:p-10 text-center aura-effect"
   }, /*#__PURE__*/React.createElement("p", {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-5xl"
-  }, "\"Tra\xE9 ternura a tu cuerpo. Todo empieza en tu respiraci\xF3n.\"")))), /*#__PURE__*/React.createElement("section", {
+  }, "\"Traé conciencia a tu cuerpo. Todo empieza con tu compromiso.\"")))), /*#__PURE__*/React.createElement("section", {
     id: "servicios",
     className: "py-12 md:py-20",
     style: {

@@ -303,7 +303,7 @@ function App(){
           <div id="hero111" className="rounded-3xl bg-[#5A32B5]/20 backdrop-blur-2xl border border-[#5A32B5]/20 p-5 md:p-7 shadow-xl">
             <p className="uppercase tracking-[0.25em] text-xs text-[#d980f9] mb-3">Tarot · Akasha · Sanación</p>
             <h1 className="new-rocker-regular title-white glow-violet text-3xl md:text-4xl leading-tight mb-4">
-              Acompañamiento amoroso para tu <span className="text-[#d980f9]">autoconocimiento</span>
+              Acompañamiento integral para tu <span className="text-[#d980f9]">autoconocimiento</span>
             </h1>
             <p className="mb-3 text-white font-bold leading-relaxed text-sm md:text-base">Soy Mica Frachi, tarotista y Ser en eterna búsqueda y construcción. Hace más de siete años que acompaño procesos de sanación y autoconocimiento a través del Tarot, los Registros Akáshicos y otras mancias.</p>
             <p className="mb-3 text-white leading-relaxed text-sm md:text-base">Si bien no me gustan las etiquetas y los rótulos, trabajo hace muchos años con herramientas que me permiten ser guía en tu camino. No existen las recetas que apliquen a todos los seres humanos. No utilizo la misma dinámica para vos que para otrx. No recorto, moldeo, o aprieto tu proceso para que encaje con el de nadie más. Por eso, si elegís fusionar tu energía con la mía vamos a crear tu propio método, uno que sea transpersonal, revolucionario y te regale tu mejor versión.</p>
@@ -336,7 +336,7 @@ function App(){
       <div>
         <div>
           <div className=" bg-[#3d1a66] text-[#000] p-6 md:p-10 text-center aura-effect">
-            <p className="new-rocker-regular title-white glow-violet text-3xl md:text-5xl">"Traé ternura a tu cuerpo. Todo empieza en tu respiración."</p>
+            <p className="new-rocker-regular title-white glow-violet text-3xl md:text-5xl">"Traé conciencia a tu cuerpo. Todo empieza con tu compromiso."</p>
           </div>
         </div>
       </div>
