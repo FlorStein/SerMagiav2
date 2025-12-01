@@ -20,7 +20,7 @@
     
     <!-- Preload imagen LCP para descubrimiento inmediato -->
     <link rel="preload" href="./assets/background-tarot.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="./assets/cartas.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="./assets/cartas2211.webp" as="image" fetchpriority="high">
     
     <!-- Preload de fuentes críticas con display=swap para evitar layout shift -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -240,6 +240,11 @@
     color: #fff !important;
     text-shadow: 0 0 15px rgba(244, 219, 255, 0.8), 0 0 25px rgba(217, 128, 249, 0.6);
     transform: scale(1.05);
+  }
+
+  /* Override: ajustar transparencia del utilitario Tailwind bg-white/80 */
+  .bg-white\/80 {
+    background-color: rgb(255 255 255 / 7%) !important;
   }
     
     </style>

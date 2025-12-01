@@ -15,7 +15,7 @@ const ASSETS = {
   cielo: "./assets/cielo.webp",
   packImg: "./assets/pack.webp",
   tarotyvino: "./assets/tarotyvino.webp",
-  heroSun: "./assets/cartas.webp",
+  heroSun: "./assets/cartas2211.webp",
   heroBg: "./assets/background-tarot.webp",
   backgroundTarotLila: "./assets/background-tarot-lila.webp",
   cieloEspejo: "./assets/cieloespejo2.webp",
@@ -375,12 +375,12 @@ function App(){
         <div className="mx-auto max-w-6xl px-4">
           <div className="rounded-3xl bg-white/80 backdrop-blur p-6 md:p-10 shadow">
             <h2 className="new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4">El Pack · Un viaje de autoconocimiento</h2>
-            <p className="text-base md:text-lg text-[#d980f9]/80 mb-6 max-w-prose">El pack es la combinación perfecta para que puedas alinearte con tu presente, sin olvidar de donde venís y sabiendo a donde querés ir.</p>
+            <p className="text-base md:text-lg text-white mb-6 max-w-prose">El pack es la combinación perfecta para que puedas alinearte con tu presente, sin olvidar de donde venís y sabiendo a donde querés ir.</p>
             <div className="grid md:grid-cols-5 gap-4 text-base mb-6">
               {PACK_COMPONENTS.map((k,i)=>(
                 <div key={i} className="rounded-2xl border bg-white p-4">
                   <p className="font-medium mb-1 text-base">{k.n}</p>
-                  <p className="text-[#d980f9]/80 text-sm">{k.d}</p>
+                  <p className="text-[#8A0BD2] text-sm">{k.d}</p>
                 </div>
               ))}
             </div>

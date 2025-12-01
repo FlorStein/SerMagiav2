@@ -32,7 +32,7 @@ const ASSETS = {
   cielo: "./assets/cielo.webp",
   packImg: "./assets/pack.webp",
   tarotyvino: "./assets/tarotyvino.webp",
-  heroSun: "./assets/cartas.webp",
+  heroSun: "./assets/cartas2211.webp",
   heroBg: "./assets/background-tarot.webp",
   backgroundTarotLila: "./assets/background-tarot-lila.webp",
   cieloEspejo: "./assets/cieloespejo2.webp",
@@ -465,7 +465,7 @@ function App() {
   }, /*#__PURE__*/React.createElement("h2", {
     className: "new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4"
   }, "El Pack \xB7 Un viaje de autoconocimiento"), /*#__PURE__*/React.createElement("p", {
-    className: "text-base md:text-lg text-[#d980f9]/80 mb-6 max-w-prose"
+    className: "text-base md:text-lg text-white mb-6 max-w-prose"
   }, "El pack es la combinaci\xF3n perfecta para que puedas alinearte con tu presente, sin olvidar de donde ven\xEDs y sabiendo a donde quer\xE9s ir."), /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-5 gap-4 text-base mb-6"
   }, PACK_COMPONENTS.map((k, i) => /*#__PURE__*/React.createElement("div", {
@@ -474,7 +474,7 @@ function App() {
   }, /*#__PURE__*/React.createElement("p", {
     className: "font-medium mb-1 text-base"
   }, k.n), /*#__PURE__*/React.createElement("p", {
-    className: "text-[#d980f9]/80 text-sm"
+    className: "text-[#8A0BD2] text-sm"
   }, k.d)))), /*#__PURE__*/React.createElement("div", {
     className: "flex justify-center"
   }, /*#__PURE__*/React.createElement("a", {
