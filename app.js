@@ -365,7 +365,7 @@ function App() {
       backgroundAttachment: "fixed"
     }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center w-full"
+    className: "mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-center w-full"
   }, /*#__PURE__*/React.createElement("div", {
     id: "hero111",
     className: "rounded-3xl bg-[#5A32B5]/20 backdrop-blur-2xl border border-[#5A32B5]/20 p-5 md:p-7 shadow-xl"
@@ -392,7 +392,7 @@ function App() {
   }, "Solicitar turnos"))), /*#__PURE__*/React.createElement("div", {
     className: "relative"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "rounded-2xl overflow-hidden  flex items-center justify-center p-3 h-[60vh] md:h-[66vh]"
+    className: "rounded-2xl overflow-hidden  flex items-center justify-center p-2 h-[60vh] md:h-[85vh]"
   }, /*#__PURE__*/React.createElement("img", {
     src: ASSETS.heroSun,
     alt: "Carta El Sol",

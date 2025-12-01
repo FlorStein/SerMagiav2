@@ -299,7 +299,7 @@ function App(){
       <Navbar/>
       {/* HERO: full viewport, background SVG, tarot card visible completa */}
       <section id="inicio" className="pt-20 min-h-[100svh] relative flex items-center" style={{backgroundImage:`url(${ASSETS.heroBg})`, backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment:"fixed"}}>
-        <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center w-full">
+        <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-center w-full">
           <div id="hero111" className="rounded-3xl bg-[#5A32B5]/20 backdrop-blur-2xl border border-[#5A32B5]/20 p-5 md:p-7 shadow-xl">
             <p className="uppercase tracking-[0.25em] text-xs text-[#d980f9] mb-3">Tarot · Akasha · Sanación</p>
             <h1 className="new-rocker-regular title-white glow-violet text-3xl md:text-4xl leading-tight mb-4">
@@ -314,7 +314,7 @@ function App(){
             </div>
           </div>
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden  flex items-center justify-center p-3 h-[60vh] md:h-[66vh]">
+            <div className="rounded-2xl overflow-hidden  flex items-center justify-center p-2 h-[60vh] md:h-[85vh]">
               <img 
                 src={ASSETS.heroSun} 
                 alt="Carta El Sol" 
