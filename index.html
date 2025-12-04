@@ -261,11 +261,10 @@
     
     <!-- EmailJS para envío de formularios -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
-    <script type="text/javascript">
-      (function() {
-        emailjs.init("fNJq8JZU3p3N8_VEL");
-      })();
-    </script>
+    
+    <!-- App compilado (sin Babel en el navegador) -->
+    <script defer src="./js/agenda-loader.js"></script>
+    <script defer src="./app.js"></script>
   
   <!-- Scripts de animación y efectos -->
   <script>
@@ -409,9 +408,6 @@
     } else {
       setTimeout(setupLazyLoading, 300);
     }
-  </script>
-</body>
-</html>
   </script>
 </body>
 </html>

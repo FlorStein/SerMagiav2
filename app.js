@@ -270,6 +270,12 @@ function ContactForm() {
     mensaje: ""
   });
   const [status, setStatus] = React.useState("");
+  React.useEffect(() => {
+    // Inicializar EmailJS cuando el componente monta
+    if (window.emailjs) {
+      window.emailjs.init("fNJq8JZU3p3N8_VEL");
+    }
+  }, []);
   const handleChange = React.useCallback(e => {
     const {
       name,
