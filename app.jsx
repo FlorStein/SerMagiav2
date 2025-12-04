@@ -215,17 +215,33 @@ function ContactForm(){
     mensaje: ""
   });
   
+  const [status, setStatus] = React.useState("");
+  
   const handleChange = React.useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   }, []);
   
-  const handleSubmit = React.useCallback((e) => {
+  const handleSubmit = React.useCallback(async (e) => {
     e.preventDefault();
-    const to = "hola@sermagia.tarot";
-    const subject = encodeURIComponent(formData.asunto || 'Consulta desde la web');
-    const body = encodeURIComponent(`Nombre: ${formData.nombre}\nEmail: ${formData.email}\n\n${formData.mensaje}`);
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    setStatus("sending");
+    
+    try {
+      await emailjs.send("service_sermagia", "template_sermagia", {
+        to_email: "sermagia.tarot@gmail.com",
+        from_name: formData.nombre,
+        from_email: formData.email,
+        subject: formData.asunto || "Consulta desde la web",
+        message: formData.mensaje
+      });
+      
+      setStatus("success");
+      setFormData({ nombre: "", email: "", asunto: "", mensaje: "" });
+      setTimeout(() => setStatus(""), 5000);
+    } catch (error) {
+      setStatus("error");
+      console.error("Email error:", error);
+    }
   }, [formData]);
   
   return (
@@ -269,8 +285,20 @@ function ContactForm(){
         rows={4} 
         placeholder="Contame en qué te puedo acompañar"
       />
+      {status === "success" && (
+        <p className="text-green-400 text-sm">✓ Mensaje enviado correctamente</p>
+      )}
+      {status === "error" && (
+        <p className="text-red-400 text-sm">✗ Error al enviar. Intentá de nuevo.</p>
+      )}
       <div className="flex gap-3">
-  <button type="submit" className="rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max">Enviar</button>
+        <button 
+          type="submit" 
+          disabled={status === "sending"}
+          className="rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {status === "sending" ? "Enviando..." : "Enviar"}
+        </button>
         <a href="https://wa.me/5491168040649" className="rounded-full border px-5 py-3 text-sm">WhatsApp</a>
       </div>
     </form>

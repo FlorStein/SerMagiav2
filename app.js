@@ -269,6 +269,7 @@ function ContactForm() {
     asunto: "",
     mensaje: ""
   });
+  const [status, setStatus] = React.useState("");
   const handleChange = React.useCallback(e => {
     const {
       name,
@@ -279,12 +280,29 @@ function ContactForm() {
       [name]: value
     }));
   }, []);
-  const handleSubmit = React.useCallback(e => {
+  const handleSubmit = React.useCallback(async e => {
     e.preventDefault();
-    const to = "hola@sermagia.tarot";
-    const subject = encodeURIComponent(formData.asunto || 'Consulta desde la web');
-    const body = encodeURIComponent(`Nombre: ${formData.nombre}\nEmail: ${formData.email}\n\n${formData.mensaje}`);
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    setStatus("sending");
+    try {
+      await emailjs.send("service_sermagia", "template_sermagia", {
+        to_email: "sermagia.tarot@gmail.com",
+        from_name: formData.nombre,
+        from_email: formData.email,
+        subject: formData.asunto || "Consulta desde la web",
+        message: formData.mensaje
+      });
+      setStatus("success");
+      setFormData({
+        nombre: "",
+        email: "",
+        asunto: "",
+        mensaje: ""
+      });
+      setTimeout(() => setStatus(""), 5000);
+    } catch (error) {
+      setStatus("error");
+      console.error("Email error:", error);
+    }
   }, [formData]);
   return /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit,
@@ -331,12 +349,17 @@ function ContactForm() {
     className: "rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60",
     rows: 4,
     placeholder: "Contame en qu\xE9 te puedo acompa\xF1ar"
-  }), /*#__PURE__*/React.createElement("div", {
+  }), status === "success" && /*#__PURE__*/React.createElement("p", {
+    className: "text-green-400 text-sm"
+  }, "\u2713 Mensaje enviado correctamente"), status === "error" && /*#__PURE__*/React.createElement("p", {
+    className: "text-red-400 text-sm"
+  }, "\u2717 Error al enviar. Intent\xE1 de nuevo."), /*#__PURE__*/React.createElement("div", {
     className: "flex gap-3"
   }, /*#__PURE__*/React.createElement("button", {
     type: "submit",
-    className: "rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max"
-  }, "Enviar"), /*#__PURE__*/React.createElement("a", {
+    disabled: status === "sending",
+    className: "rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max disabled:opacity-50 disabled:cursor-not-allowed"
+  }, status === "sending" ? "Enviando..." : "Enviar"), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
     className: "rounded-full border px-5 py-3 text-sm"
   }, "WhatsApp")));

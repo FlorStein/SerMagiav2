@@ -259,9 +259,13 @@
     <!-- Tailwind CDN - Para producción considera usar Tailwind CLI -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- App compilado (sin Babel en el navegador) -->
-    <script defer src="./js/agenda-loader.js"></script>
-    <script defer src="./app.js"></script>
+    <!-- EmailJS para envío de formularios -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+        emailjs.init("fNJq8JZU3p3N8_VEL");
+      })();
+    </script>
   
   <!-- Scripts de animación y efectos -->
   <script>
