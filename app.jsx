@@ -217,13 +217,6 @@ function ContactForm(){
   
   const [status, setStatus] = React.useState("");
   
-  React.useEffect(() => {
-    // Inicializar EmailJS cuando el componente monta
-    if (window.emailjs) {
-      window.emailjs.init("fNJq8JZU3p3N8_VEL");
-    }
-  }, []);
-  
   const handleChange = React.useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -234,20 +227,33 @@ function ContactForm(){
     setStatus("sending");
     
     try {
-      await emailjs.send("service_sermagia", "template_sermagia", {
-        to_email: "sermagia.tarot@gmail.com",
-        from_name: formData.nombre,
-        from_email: formData.email,
-        subject: formData.asunto || "Consulta desde la web",
-        message: formData.mensaje
+      const response = await fetch("https://formspree.io/f/mqkzzkdn", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          email: formData.email,
+          asunto: formData.asunto || "Consulta desde la web",
+          mensaje: formData.mensaje
+        })
       });
-      
-      setStatus("success");
-      setFormData({ nombre: "", email: "", asunto: "", mensaje: "" });
-      setTimeout(() => setStatus(""), 5000);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ nombre: "", email: "", asunto: "", mensaje: "" });
+        setTimeout(() => setStatus(""), 5000);
+      } else {
+        setStatus("error");
+        console.error("Error:", data);
+      }
     } catch (error) {
       setStatus("error");
-      console.error("Email error:", error);
+      console.error("Error:", error);
     }
   }, [formData]);
   
