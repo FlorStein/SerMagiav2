@@ -1,5 +1,6 @@
 /* Ser Magia · Landing v1.2 (optimized) */
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqkzzkdn";
+// Configurable endpoint. Usa el ID real de Formspree.
+const FORMSPREE_ENDPOINT = (typeof window !== 'undefined' && window.FORMSPREE_ENDPOINT) || "https://formspree.io/f/mlgrpqdk";
 const links = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
@@ -225,6 +226,12 @@ function ContactForm(){
   
   const handleSubmit = React.useCallback(async (e) => {
     e.preventDefault();
+    if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("xxxx")) {
+      setStatus("error");
+      console.error("Configura FORMSPREE_ENDPOINT con tu ID real");
+      return;
+    }
+
     setStatus("sending");
     
     try {

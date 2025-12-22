@@ -1,5 +1,7 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Ser Magia · Landing v1.2 (optimized) */
+// Configurable endpoint. Usa el ID real de Formspree.
+const FORMSPREE_ENDPOINT = typeof window !== 'undefined' && window.FORMSPREE_ENDPOINT || "https://formspree.io/f/mlgrpqdk";
 const links = [{
   href: "#inicio",
   label: "Inicio"
@@ -282,9 +284,14 @@ function ContactForm() {
   }, []);
   const handleSubmit = React.useCallback(async e => {
     e.preventDefault();
+    if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("xxxx")) {
+      setStatus("error");
+      console.error("Configura FORMSPREE_ENDPOINT con tu ID real");
+      return;
+    }
     setStatus("sending");
     try {
-      const response = await fetch("https://formspree.io/f/mqkzzkdn", {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -294,6 +301,8 @@ function ContactForm() {
           nombre: formData.nombre,
           email: formData.email,
           asunto: formData.asunto || "Consulta desde la web",
+          subject: formData.asunto || "Consulta desde la web",
+          _replyto: formData.email,
           mensaje: formData.mensaje
         })
       });
@@ -322,17 +331,21 @@ function ContactForm() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-2 gap-4"
   }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
     name: "nombre",
     value: formData.nombre,
     onChange: handleChange,
     className: "rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60",
-    placeholder: "Nombre"
+    placeholder: "Nombre",
+    required: true
   }), /*#__PURE__*/React.createElement("input", {
+    type: "email",
     name: "email",
     value: formData.email,
     onChange: handleChange,
     className: "rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60",
-    placeholder: "Email"
+    placeholder: "Email",
+    required: true
   })), /*#__PURE__*/React.createElement("select", {
     name: "asunto",
     value: formData.asunto,
@@ -360,7 +373,8 @@ function ContactForm() {
     onChange: handleChange,
     className: "rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60",
     rows: 4,
-    placeholder: "Contame en qu\xE9 te puedo acompa\xF1ar"
+    placeholder: "Contame en qu\xE9 te puedo acompa\xF1ar",
+    required: true
   }), status === "success" && /*#__PURE__*/React.createElement("p", {
     className: "text-green-400 text-sm"
   }, "\u2713 Mensaje enviado correctamente"), status === "error" && /*#__PURE__*/React.createElement("p", {
