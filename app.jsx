@@ -17,7 +17,8 @@ const ASSETS = {
   cielo: "./assets/cielo.webp",
   packImg: "./assets/pack.webp",
   tarotyvino: "./assets/tarotyvino.webp",
-  heroSun: "./assets/cartas2211.webp",
+  // Imagen de cartas actualizada
+  heroSun: "./assets/cartas1122.png",
   heroBg: "./assets/background-tarot.webp",
   backgroundTarotLila: "./assets/background-tarot-lila.webp",
   cieloEspejo: "./assets/cieloespejo2.webp",
@@ -370,11 +371,11 @@ function App(){
             </div>
           </div>
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden  flex items-center justify-center p-2 h-[60vh] md:h-[85vh]">
+            <div className="rounded-2xl overflow-hidden flex items-center justify-center p-2 h-[75vh] md:h-[95vh]">
               <img 
                 src={ASSETS.heroSun} 
                 alt="Carta El Sol" 
-                className="max-h-full max-w-full object-contain"
+                className="h-full w-full object-contain"
                 width="600"
                 height="900"
                 fetchpriority="high"
