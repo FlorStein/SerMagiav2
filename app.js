@@ -407,12 +407,9 @@ function App() {
     className: "min-h-screen"
   }, /*#__PURE__*/React.createElement(Navbar, null), /*#__PURE__*/React.createElement("section", {
     id: "inicio",
-    className: "pt-20 min-h-[100svh] relative flex items-center",
+    className: "pt-20 min-h-[100svh] relative flex items-center bg-sticky-stable bg-smaller",
     style: {
-      backgroundImage: `url(${ASSETS.heroBg})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundAttachment: "fixed"
+      backgroundImage: `url(${ASSETS.heroBg})`
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-center w-full"
@@ -442,7 +439,7 @@ function App() {
   }, "Solicitar turnos"))), /*#__PURE__*/React.createElement("div", {
     className: "relative"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "rounded-2xl overflow-hidden flex items-center justify-center p-2 h-[75vh] md:h-[95vh]"
+    className: "rounded-2xl overflow-hidden flex items-center justify-center p-2 h-[65vh] md:h-[90vh]"
   }, /*#__PURE__*/React.createElement("img", {
     src: ASSETS.heroSun,
     alt: "Carta El Sol",
@@ -456,12 +453,9 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-5xl"
   }, "\"Tra\xE9 conciencia a tu cuerpo. Todo empieza con tu compromiso.\"")))), /*#__PURE__*/React.createElement("section", {
     id: "servicios",
-    className: "py-12 md:py-20",
+    className: "py-12 md:py-20 bg-sticky-stable bg-smaller",
     style: {
-      backgroundImage: `url(${ASSETS.backgroundTarotLila})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed'
+      backgroundImage: `url(${ASSETS.backgroundTarotLila})`
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-6xl px-4"
@@ -473,12 +467,9 @@ function App() {
     key: i
   }, servicio)))))), /*#__PURE__*/React.createElement("section", {
     id: "vinito",
-    className: "py-12 md:py-20 min-h-[100svh] flex items-center",
+    className: "py-12 md:py-20 min-h-[100svh] flex items-center bg-sticky-stable",
     style: {
-      backgroundImage: `url(${ASSETS.estrellaMujer})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed'
+      backgroundImage: `url(${ASSETS.estrellaMujer})`
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-6xl px-4 w-full"
@@ -501,12 +492,9 @@ function App() {
     className: "rounded-full bg-white/10 border border-white/40 text-white px-5 py-3 text-sm transition text-center"
   }, "Espiar \uD83E\uDD8B"))))), /*#__PURE__*/React.createElement("section", {
     id: "pack",
-    className: "py-8 md:py-16 min-h-[100svh] flex items-center",
+    className: "py-8 md:py-16 min-h-[100svh] flex items-center bg-sticky-stable",
     style: {
-      backgroundImage: `url(${ASSETS.manosLuna})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed'
+      backgroundImage: `url(${ASSETS.manosLuna})`
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-6xl px-4"
@@ -532,12 +520,10 @@ function App() {
     className: "rounded-full bg-[#8a0bd2] text-white px-6 py-3 text-base font-medium hover:bg-[#7209b3] transition-colors"
   }, "Solicitar turno para El Pack"))))), /*#__PURE__*/React.createElement("section", {
     id: "lecturas",
-    className: "py-8 md:py-16 min-h-[80svh] md:min-h-[100svh] flex items-center justify-center lazy-bg",
+    className: "py-8 md:py-16 min-h-[80svh] md:min-h-[100svh] flex items-center justify-center lazy-bg bg-sticky-stable",
     "data-bg": ASSETS.lavandaCampo,
     style: {
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed'
+      backgroundPosition: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-6xl px-4 flex-1"
@@ -588,12 +574,10 @@ function App() {
     className: "lazy-video w-full h-full object-cover relative z-0"
   }))))), /*#__PURE__*/React.createElement("section", {
     id: "agenda",
-    className: "pt-24 md:pt-32 pb-8 md:pb-16 lazy-bg",
+    className: "pt-24 md:pt-32 pb-8 md:pb-16 lazy-bg bg-sticky-stable",
     "data-bg": ASSETS.cieloEspejo,
     style: {
-      backgroundAttachment: 'fixed',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover'
+      backgroundPosition: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-6xl px-4"
@@ -605,12 +589,10 @@ function App() {
     key: i
   }, e)))))), /*#__PURE__*/React.createElement("section", {
     id: "contacto",
-    className: "py-12 md:py-20 lazy-bg",
+    className: "py-12 md:py-20 lazy-bg bg-sticky-stable",
     "data-bg": ASSETS.cieloEspejo,
     style: {
-      backgroundAttachment: 'fixed',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover'
+      backgroundPosition: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-2xl px-4"

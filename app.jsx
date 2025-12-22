@@ -355,7 +355,7 @@ function App(){
     <div className="min-h-screen">
       <Navbar/>
       {/* HERO: full viewport, background SVG, tarot card visible completa */}
-      <section id="inicio" className="pt-20 min-h-[100svh] relative flex items-center" style={{backgroundImage:`url(${ASSETS.heroBg})`, backgroundSize:"cover", backgroundPosition:"center", backgroundAttachment:"fixed"}}>
+      <section id="inicio" className="pt-20 min-h-[100svh] relative flex items-center bg-sticky-stable bg-smaller" style={{backgroundImage:`url(${ASSETS.heroBg})`}}>
         <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-center w-full">
           <div id="hero111" className="rounded-3xl bg-[#5A32B5]/20 backdrop-blur-2xl border border-[#5A32B5]/20 p-5 md:p-7 shadow-xl">
             <p className="uppercase tracking-[0.25em] text-xs text-[#d980f9] mb-3">Tarot · Akasha · Sanación</p>
@@ -371,7 +371,7 @@ function App(){
             </div>
           </div>
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden flex items-center justify-center p-2 h-[75vh] md:h-[95vh]">
+            <div className="rounded-2xl overflow-hidden flex items-center justify-center p-2 h-[65vh] md:h-[90vh]">
               <img 
                 src={ASSETS.heroSun} 
                 alt="Carta El Sol" 
@@ -399,7 +399,7 @@ function App(){
       </div>
 
       {/* SERVICIOS */}
-      <section id="servicios" className="py-12 md:py-20" style={{backgroundImage:`url(${ASSETS.backgroundTarotLila})`, backgroundSize:'cover', backgroundPosition:'center', backgroundAttachment:'fixed'}}>
+      <section id="servicios" className="py-12 md:py-20 bg-sticky-stable bg-smaller" style={{backgroundImage:`url(${ASSETS.backgroundTarotLila})`}}>
   <div className="mx-auto max-w-6xl px-4">
     <h2 className="new-rocker-regular text-[#ffffff] text-[2.5rem] md:text-[4rem] mb-8">
   Servicios
@@ -413,7 +413,7 @@ function App(){
 </section>
 
       {/* VINITO Y TAROT */}
-      <section id="vinito" className="py-12 md:py-20 min-h-[100svh] flex items-center" style={{backgroundImage:`url(${ASSETS.estrellaMujer})`, backgroundSize:'cover', backgroundPosition:'center', backgroundAttachment:'fixed'}}>
+      <section id="vinito" className="py-12 md:py-20 min-h-[100svh] flex items-center bg-sticky-stable" style={{backgroundImage:`url(${ASSETS.estrellaMujer})`}}>
         <div className="mx-auto max-w-6xl px-4 w-full">
           <div className="md:ml-auto md:w-1/2">
             <h2 className="new-rocker-regular title-white glow-violet text-3xl md:text-4xl mb-3">Vinito y Tarot</h2>
@@ -428,7 +428,7 @@ function App(){
       </section>
 
       {/* EL PACK */}
-      <section id="pack" className="py-8 md:py-16 min-h-[100svh] flex items-center" style={{backgroundImage:`url(${ASSETS.manosLuna})`, backgroundSize:'cover', backgroundPosition:'center', backgroundAttachment:'fixed'}}>
+      <section id="pack" className="py-8 md:py-16 min-h-[100svh] flex items-center bg-sticky-stable" style={{backgroundImage:`url(${ASSETS.manosLuna})`}}>
         <div className="mx-auto max-w-6xl px-4">
           <div className="rounded-3xl bg-white/80 backdrop-blur p-6 md:p-10 shadow">
             <h2 className="new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4">El Pack · Un viaje de autoconocimiento</h2>
@@ -453,9 +453,9 @@ function App(){
       {/* LECTURAS */}
   <section 
     id="lecturas" 
-    className="py-8 md:py-16 min-h-[80svh] md:min-h-[100svh] flex items-center justify-center lazy-bg" 
+    className="py-8 md:py-16 min-h-[80svh] md:min-h-[100svh] flex items-center justify-center lazy-bg bg-sticky-stable" 
     data-bg={ASSETS.lavandaCampo}
-    style={{backgroundSize:'cover', backgroundPosition:'center', backgroundAttachment:'fixed'}}
+    style={{backgroundPosition:'center'}}
   >
     <div className="mx-auto max-w-6xl px-4 flex-1">
           <h2 className="new-rocker-regular title-white glow-violet text-6xl mb-6">Lecturas de Tarot</h2>
@@ -505,9 +505,9 @@ function App(){
       {/* AGENDA */}
       <section 
         id="agenda" 
-        className="pt-24 md:pt-32 pb-8 md:pb-16 lazy-bg" 
+        className="pt-24 md:pt-32 pb-8 md:pb-16 lazy-bg bg-sticky-stable" 
         data-bg={ASSETS.cieloEspejo}
-        style={{backgroundAttachment:'fixed', backgroundPosition:'center', backgroundSize:'cover'}}
+        style={{backgroundPosition:'center'}}
       >
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="new-rocker-regular title-white glow-violet text-5xl mb-6 text-center">Próximas fechas</h2>
@@ -522,9 +522,9 @@ function App(){
       {/* CONTACTO */}
       <section 
         id="contacto" 
-        className="py-12 md:py-20 lazy-bg" 
+        className="py-12 md:py-20 lazy-bg bg-sticky-stable" 
         data-bg={ASSETS.cieloEspejo}
-        style={{backgroundAttachment:'fixed', backgroundPosition:'center', backgroundSize:'cover'}}
+        style={{backgroundPosition:'center'}}
       >
         <div className="mx-auto max-w-2xl px-4">
           <div className="rounded-3xl border bg-white/45 backdrop-blur p-8 md:p-10 shadow-sm">

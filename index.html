@@ -33,7 +33,8 @@
     </noscript>
     
     <style>
-      html, body { scroll-behavior: smooth; }
+      html, body { scroll-behavior: smooth; width:100%; overflow-x:hidden; }
+      img, video { max-width: 100%; height: auto; }
       .font-serif { font-family: 'Playfair Display', serif; }
       .font-sans { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
       /* keyframes: riseFade & glowTitle */
@@ -245,6 +246,27 @@
   /* Override: ajustar transparencia del utilitario Tailwind bg-white/80 */
   .bg-white\/80 {
     background-color: rgb(255 255 255 / 7%) !important;
+  }
+
+  /* Fondo fijo estable */
+  .bg-sticky-stable {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  @media (max-width: 768px) {
+    .bg-sticky-stable { background-attachment: scroll; }
+  }
+
+  /* Background más pequeño en mobile para mostrar más detalle del estampado */
+  @media (max-width: 768px) {
+    .bg-smaller { 
+      background-size: 140% !important;
+      background-position: center center !important;
+      background-repeat: repeat !important;
+    }
   }
     
     </style>
