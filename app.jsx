@@ -1,4 +1,5 @@
 /* Ser Magia · Landing v1.2 (optimized) */
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqkzzkdn";
 const links = [
   { href: "#inicio", label: "Inicio" },
   { href: "#servicios", label: "Servicios" },
@@ -227,7 +228,7 @@ function ContactForm(){
     setStatus("sending");
     
     try {
-      const response = await fetch("https://formspree.io/f/mqkzzkdn", {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -237,6 +238,8 @@ function ContactForm(){
           nombre: formData.nombre,
           email: formData.email,
           asunto: formData.asunto || "Consulta desde la web",
+          subject: formData.asunto || "Consulta desde la web",
+          _replyto: formData.email,
           mensaje: formData.mensaje
         })
       });
@@ -261,18 +264,22 @@ function ContactForm(){
     <form onSubmit={handleSubmit} className="grid gap-4">
       <div className="grid md:grid-cols-2 gap-4">
         <input 
+          type="text"
           name="nombre"
           value={formData.nombre} 
           onChange={handleChange} 
           className="rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60" 
           placeholder="Nombre"
+          required
         />
         <input 
+          type="email"
           name="email"
           value={formData.email} 
           onChange={handleChange} 
           className="rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60" 
           placeholder="Email"
+          required
         />
       </div>
       <select 
@@ -297,6 +304,7 @@ function ContactForm(){
         className="rounded-xl border px-4 py-3 bg-[#000] text-white placeholder:text-[#d980f9]/60" 
         rows={4} 
         placeholder="Contame en qué te puedo acompañar"
+        required
       />
       {status === "success" && (
         <p className="text-green-400 text-sm">✓ Mensaje enviado correctamente</p>
