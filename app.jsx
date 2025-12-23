@@ -544,7 +544,13 @@ function App(){
         id="contacto" 
         className="py-12 md:py-20 lazy-bg bg-sticky-stable bg-smaller bg-flip-mobile seamless-top" 
         data-bg={ASSETS.cieloEspejo}
-        style={{backgroundPosition:'center', backgroundRepeat:'no-repeat', '--bg-img': `url(${ASSETS.cieloEspejo})`}}
+        style={{
+          backgroundPosition:'center',
+          backgroundRepeat:'no-repeat',
+          '--bg-img': `url(${ASSETS.cieloEspejo})`,
+          marginTop:'-4px',
+          backgroundColor:'#4b4150'
+        }}
       >
         <div className="mx-auto max-w-2xl px-4">
           <div className="rounded-3xl border bg-white/45 backdrop-blur p-8 md:p-10 shadow-sm">
@@ -559,11 +565,11 @@ function App(){
       <footer className="pb-10 pt-6 border-t bg-[#8a0bd2] text-white border-[#8a0bd2]/20">
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-sm text-white/90">© {new Date().getFullYear()} Ser Magia Tarot</p>
-            <a href="https://studionolaatelier.com/" target="_blank" rel="noopener noreferrer" className="studio-nola-link inline-block text-sm text-white/80 transition-all duration-300">Hecho con 💜 por Studio Nola Atelier</a>
-            <div className="flex items-center gap-5 text-sm">
+            <p className="text-base md:text-lg text-white/90">© {new Date().getFullYear()} Ser Magia Tarot</p>
+            <a href="https://studionolaatelier.com/" target="_blank" rel="noopener noreferrer" className="studio-nola-link inline-block text-base md:text-lg text-white transition-all duration-300">Hecho con 💜 por Studio Nola Atelier</a>
+            <div className="flex items-center gap-5 text-base md:text-lg">
               <a href="https://instagram.com/sermagia.tarot" className="text-white hover:text-[#f4dbff] flex items-center gap-1">
-                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 3.25A4.75 4.75 0 1 1 7.25 13 4.75 4.75 0 0 1 12 8.25Zm0 2a2.75 2.75 0 1 0 2.75 2.75A2.75 2.75 0 0 0 12 10.25Zm4.5-3.5a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 16.5 6.75Z"/>
                 </svg>
                 Instagram
