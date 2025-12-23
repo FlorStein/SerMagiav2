@@ -80,7 +80,7 @@ const PACK_COMPONENTS = [{
   d: 'Hoja de ruta personalizada con pasos concretos.'
 }];
 
-// Datos de lecturas
+// Datos de lecturas (base). Si hay precios externos en Google Sheets, se superponen en render.
 const LECTURAS = [{
   t: 'Tarot Genealógico',
   d: `En este espacio mágico y creativo, te invito a sumergirte en un viaje profundo
@@ -394,6 +394,8 @@ function ContactForm() {
 function App() {
   // Estado para forzar re-render cuando se actualice la agenda
   const [agendaVersion, setAgendaVersion] = React.useState(0);
+  // Estado para forzar re-render cuando se actualicen las lecturas (precios/duración)
+  const [lecturasVersion, setLecturasVersion] = React.useState(0);
   React.useEffect(() => {
     // Escuchar evento de actualización de agenda
     const handleAgendaUpdate = () => {
@@ -401,7 +403,16 @@ function App() {
       setAgendaVersion(v => v + 1);
     };
     window.addEventListener('agendaUpdated', handleAgendaUpdate);
-    return () => window.removeEventListener('agendaUpdated', handleAgendaUpdate);
+    // Escuchar evento de actualización de lecturas (precios desde Sheets)
+    const handleLecturasUpdate = () => {
+      console.log('[App] 🔄 Lecturas actualizadas, re-renderizando...');
+      setLecturasVersion(v => v + 1);
+    };
+    window.addEventListener('lecturasUpdated', handleLecturasUpdate);
+    return () => {
+      window.removeEventListener('agendaUpdated', handleAgendaUpdate);
+      window.removeEventListener('lecturasUpdated', handleLecturasUpdate);
+    };
   }, []);
   return /*#__PURE__*/React.createElement("div", {
     className: "min-h-screen"
@@ -531,7 +542,18 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-6xl mb-6"
   }, "Lecturas de Tarot"), /*#__PURE__*/React.createElement("div", {
     className: "grid md:grid-cols-3 gap-6"
-  }, LECTURAS.map((c, i) => /*#__PURE__*/React.createElement(LecturaCard, _extends({
+  }, function () {
+    var override = typeof window !== 'undefined' && window.LECTURAS_PRECIOS || {};
+    var data = LECTURAS.map(function (c) {
+      var key = (c.t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+      var o = override[key] || override[c.t] || {};
+      return Object.assign({}, c, {
+        precio: o.precio || c.precio,
+        dur: o.dur || c.dur
+      });
+    });
+    return data;
+  }().map((c, i) => /*#__PURE__*/React.createElement(LecturaCard, _extends({
     key: i
   }, c)))))), /*#__PURE__*/React.createElement("section", {
     id: "formacion",
