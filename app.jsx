@@ -18,7 +18,7 @@ const ASSETS = {
   packImg: "./assets/pack.webp",
   tarotyvino: "./assets/tarotyvino.webp",
   // Imagen de cartas actualizada
-  heroSun: "./assets/cartas1122.png",
+  heroSun: "./assets/cartas1122.webp",
   heroBg: "./assets/background-tarot.webp",
   backgroundTarotLila: "./assets/background-tarot-lila.webp",
   cieloEspejo: "./assets/cieloespejo2.webp",
