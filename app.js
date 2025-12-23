@@ -612,7 +612,7 @@ function App() {
     key: i
   }, e)))))), /*#__PURE__*/React.createElement("section", {
     id: "contacto",
-    className: "py-12 md:py-20 lazy-bg bg-sticky-stable bg-smaller bg-flip-mobile",
+    className: "py-12 md:py-20 lazy-bg bg-sticky-stable bg-smaller bg-flip-mobile seamless-top",
     "data-bg": ASSETS.cieloEspejo,
     style: {
       backgroundPosition: 'center',

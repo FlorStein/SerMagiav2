@@ -343,6 +343,11 @@
     .bg-flip-mobile > * { position: relative; }
   }
 
+  /* Solape sutil para evitar línea entre secciones con fondo fijo (solo desktop) */
+  @media (min-width: 769px) {
+    .seamless-top { margin-top: -1px; }
+  }
+
   /* Hover destacado para botones (aplicar con clase btn-boost) */
   .btn-boost {
     position: relative;
