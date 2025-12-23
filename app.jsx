@@ -440,7 +440,7 @@ function App(){
       </section>
 
       {/* EL PACK */}
-      <section id="pack" className="py-8 md:py-16 min-h-[100svh] flex items-center bg-sticky-stable" style={{backgroundImage:`url(${ASSETS.manosLuna})`}}>
+      <section id="pack" className="py-8 md:py-16 min-h-[100svh] flex items-center lazy-bg bg-sticky-stable" data-bg={ASSETS.manosLuna} style={{backgroundPosition:'center'}}>
         <div className="mx-auto max-w-6xl px-4">
           <div className="rounded-3xl bg-white/80 backdrop-blur p-6 md:p-10 shadow">
             <h2 className="new-rocker-regular title-white glow-violet text-[2.25rem] md:text-[2.25rem] mb-4">El Pack · Un viaje de autoconocimiento</h2>
