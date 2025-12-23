@@ -235,6 +235,46 @@
   #vinito a[href="#contacto"]:active {
     transform: translateY(-1px) scale(1.05);
   }
+
+  /* Efecto vinito reutilizable (para botones fuera de la sección) */
+  .btn-vinito {
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: #8a0bd2 !important; /* color base anterior */
+    color: #fff !important;
+    border: none;
+  }
+  .btn-vinito::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 70%
+    );
+    transform: rotate(45deg) translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .btn-vinito:hover {
+    background: linear-gradient(135deg, #f28b66 0%, #d980f9 100%) !important;
+    box-shadow: 
+      0 0 25px rgba(242, 139, 102, 0.7),
+      0 0 50px rgba(217, 128, 249, 0.5),
+      0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px) scale(1.08);
+  }
+  .btn-vinito:hover::before {
+    transform: rotate(45deg) translateX(100%);
+  }
+  .btn-vinito:active {
+    transform: translateY(-1px) scale(1.05);
+  }
   
   /* Estilo para link de Studio Nola Atelier en footer */
   .studio-nola-link:hover {
@@ -262,11 +302,73 @@
 
   /* Background más pequeño en mobile para mostrar más detalle del estampado */
   @media (max-width: 768px) {
-    .bg-smaller { 
-      background-size: 140% !important;
+    .bg-smaller {
+      background-size: calc(140% + 10px) !important; /* ligera solapa para tapar bordes */
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      background-origin: border-box;
+    }
+    /* Variante repetida con solapado de 10px (para hero y servicios) */
+    .bg-repeat-10 {
+      background-size: calc(140% + 10px) !important;
       background-position: center center !important;
       background-repeat: repeat !important;
+      background-origin: border-box;
     }
+  }
+
+  /* Ajuste de solapa para el pseudo de flip */
+  @media (max-width: 768px) {
+    .bg-flip-mobile::before {
+      background-size: calc(140% + 10px);
+      background-repeat: no-repeat;
+      background-position: center calc(50% - 10px);
+      background-origin: border-box;
+    }
+  }
+
+  /* Flip de fondo solo en mobile (ej. contacto) */
+  .bg-flip-mobile { position: relative; }
+  .bg-flip-mobile::before { content: ""; position: absolute; inset: 0; pointer-events: none; display: none; }
+  @media (max-width: 768px) {
+    .bg-flip-mobile { background: none !important; overflow: hidden; }
+    .bg-flip-mobile::before {
+      display: block;
+      background-image: var(--bg-img);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: scaleY(-1);
+    }
+    .bg-flip-mobile > * { position: relative; }
+  }
+
+  /* Hover destacado para botones (aplicar con clase btn-boost) */
+  .btn-boost {
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    color: #111 !important;
+  }
+  .btn-boost:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #d980f9 0%, #4d6bff 100%) !important;
+    color: #111 !important;
+    border-color: transparent !important;
+    box-shadow: 0 10px 30px rgba(217, 128, 249, 0.28), 0 6px 18px rgba(0,0,0,0.18);
+  }
+  .btn-boost:active {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #c46de6 0%, #3d5adf 100%) !important;
+    color: #111 !important;
+    border-color: transparent !important;
+    box-shadow: 0 6px 18px rgba(217, 128, 249, 0.22), 0 3px 10px rgba(0,0,0,0.14);
+  }
+
+  /* Override para texto blanco en botones específicos */
+  .btn-boost.text-white,
+  .btn-boost.text-white:hover,
+  .btn-boost.text-white:active {
+    color: #fff !important;
   }
     
     </style>

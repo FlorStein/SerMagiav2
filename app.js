@@ -147,12 +147,12 @@ const ServiceCard = React.memo(({
   className: "flex gap-3"
 }, /*#__PURE__*/React.createElement("a", {
   href: link,
-  className: "inline-block rounded-full bg-white/20 backdrop-blur text-white px-5 py-2 text-sm hover:bg-white/30 transition border border-white/40"
+  className: "btn-boost inline-block rounded-full bg-white/20 backdrop-blur text-white px-5 py-2 text-sm hover:bg-white/30 transition border border-white/40"
 }, "M\xE1s info"), /*#__PURE__*/React.createElement("a", {
   href: "https://wa.me/5491168040649",
   target: "_blank",
   rel: "noopener noreferrer",
-  className: "inline-block rounded-full bg-[#5A32B5] text-white px-5 py-2 text-sm hover:opacity-90 transition"
+  className: "btn-boost inline-block rounded-full bg-[#5A32B5] text-white px-5 py-2 text-sm hover:opacity-90 transition"
 }, "Reservar")))));
 
 // Componente memoizado para tarjeta de lectura
@@ -175,7 +175,7 @@ const LecturaCard = React.memo(({
   className: "text-lg font-bold text-[#350352]/70 absolute left-4 bottom-4"
 }, precio, " \xB7 ", dur), /*#__PURE__*/React.createElement("a", {
   href: "https://wa.me/5491168040649",
-  className: "rounded-full border px-4 py-2 text-sm absolute right-4 bottom-4 font-bold"
+  className: "btn-boost rounded-full border px-4 py-2 text-sm absolute right-4 bottom-4 font-bold"
 }, "Solicitar turnos")));
 
 // Componente memoizado para evento de agenda
@@ -195,10 +195,10 @@ const EventoCard = React.memo(({
   className: "flex gap-3"
 }, /*#__PURE__*/React.createElement("a", {
   href: "https://wa.me/5491168040649",
-  className: "rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-sm"
+  className: "btn-boost rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-sm"
 }, "Reservar"), /*#__PURE__*/React.createElement("a", {
   href: "#contacto",
-  className: "rounded-full border px-4 py-2 text-sm"
+  className: "btn-boost rounded-full border px-4 py-2 text-sm"
 }, "Consultar"))));
 function Navbar() {
   const [open, setOpen] = React.useState(false);
@@ -237,10 +237,10 @@ function Navbar() {
     className: "text-sm hover:text-[#d980f9] transition"
   }, l.label)), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
-    className: "rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-sm hover:opacity-90 transition"
+    className: "btn-vinito rounded-full text-sm px-4 py-2"
   }, "Reservar")), /*#__PURE__*/React.createElement("button", {
     "aria-label": "Abrir men\xFA",
-    className: "md:hidden inline-flex items-center justify-center rounded-full border px-3 py-2",
+    className: "md:hidden inline-flex items-center justify-center rounded-full border px-3 py-2 text-white",
     onClick: () => setOpen(v => !v)
   }, /*#__PURE__*/React.createElement("div", {
     className: "space-y-1"
@@ -261,7 +261,7 @@ function Navbar() {
     onClick: closeMenu
   }, l.label)), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
-    className: "rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-center text-sm",
+    className: "btn-vinito rounded-full text-center text-sm px-4 py-2",
     onClick: closeMenu
   }, "Reservar por WhatsApp"))));
 }
@@ -385,10 +385,10 @@ function ContactForm() {
   }, /*#__PURE__*/React.createElement("button", {
     type: "submit",
     disabled: status === "sending",
-    className: "rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max disabled:opacity-50 disabled:cursor-not-allowed"
+    className: "btn-boost rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max disabled:opacity-50 disabled:cursor-not-allowed"
   }, status === "sending" ? "Enviando..." : "Enviar"), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
-    className: "rounded-full border px-5 py-3 text-sm"
+    className: "btn-boost rounded-full border px-5 py-3 text-sm"
   }, "WhatsApp")));
 }
 function App() {
@@ -407,7 +407,7 @@ function App() {
     className: "min-h-screen"
   }, /*#__PURE__*/React.createElement(Navbar, null), /*#__PURE__*/React.createElement("section", {
     id: "inicio",
-    className: "pt-20 min-h-[100svh] relative flex items-center bg-sticky-stable bg-smaller",
+    className: "pt-20 min-h-[100svh] relative flex items-center bg-sticky-stable bg-repeat-10",
     style: {
       backgroundImage: `url(${ASSETS.heroBg})`
     }
@@ -423,19 +423,19 @@ function App() {
   }, "Acompa\xF1amiento integral para tu ", /*#__PURE__*/React.createElement("span", {
     className: "text-[#d980f9]"
   }, "autoconocimiento")), /*#__PURE__*/React.createElement("p", {
-    className: "mb-3 text-white font-bold leading-relaxed text-sm md:text-base"
+    className: "mb-3 text-white font-bold leading-relaxed text-base md:text-lg"
   }, "Soy Mica Frachi, tarotista y Ser en eterna b\xFAsqueda y construcci\xF3n. Hace m\xE1s de siete a\xF1os que acompa\xF1o procesos de sanaci\xF3n y autoconocimiento a trav\xE9s del Tarot, los Registros Ak\xE1shicos y otras mancias."), /*#__PURE__*/React.createElement("p", {
-    className: "mb-3 text-white leading-relaxed text-sm md:text-base"
+    className: "mb-3 text-white leading-relaxed text-base md:text-lg"
   }, "Si bien no me gustan las etiquetas y los r\xF3tulos, trabajo hace muchos a\xF1os con herramientas que me permiten ser gu\xEDa en tu camino. No existen las recetas que apliquen a todos los seres humanos. No utilizo la misma din\xE1mica para vos que para otrx. No recorto, moldeo, o aprieto tu proceso para que encaje con el de nadie m\xE1s. Por eso, si eleg\xEDs fusionar tu energ\xEDa con la m\xEDa vamos a crear tu propio m\xE9todo, uno que sea transpersonal, revolucionario y te regale tu mejor versi\xF3n."), /*#__PURE__*/React.createElement("p", {
-    className: "mb-4 text-white font-bold italic text-sm md:text-base"
+    className: "mb-4 text-white font-bold italic text-base md:text-lg"
   }, "Te espero del otro lado de la decisi\xF3n."), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-wrap gap-3"
   }, /*#__PURE__*/React.createElement("a", {
     href: "#servicios",
-    className: "rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
+    className: "btn-boost rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
   }, "Ver servicios"), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649",
-    className: "rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm"
+    className: "btn-boost rounded-full border border-[#d980f9] text-white px-5 py-3 text-sm"
   }, "Solicitar turnos"))), /*#__PURE__*/React.createElement("div", {
     className: "relative"
   }, /*#__PURE__*/React.createElement("div", {
@@ -453,7 +453,7 @@ function App() {
     className: "new-rocker-regular title-white glow-violet text-3xl md:text-5xl"
   }, "\"Tra\xE9 conciencia a tu cuerpo. Todo empieza con tu compromiso.\"")))), /*#__PURE__*/React.createElement("section", {
     id: "servicios",
-    className: "py-12 md:py-20 bg-sticky-stable bg-smaller",
+    className: "py-12 md:py-20 bg-sticky-stable bg-repeat-10",
     style: {
       backgroundImage: `url(${ASSETS.backgroundTarotLila})`
     }
@@ -517,7 +517,7 @@ function App() {
     className: "flex justify-center"
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649?text=Hola!%20quisiera%20un%20turno%20para%20%22el%20pack%22",
-    className: "rounded-full bg-[#8a0bd2] text-white px-6 py-3 text-base font-medium hover:bg-[#7209b3] transition-colors"
+    className: "btn-boost rounded-full bg-[#8a0bd2] text-white px-6 py-3 text-base font-medium hover:bg-[#7209b3] transition-colors"
   }, "Solicitar turno para El Pack"))))), /*#__PURE__*/React.createElement("section", {
     id: "lecturas",
     className: "py-8 md:py-16 min-h-[80svh] md:min-h-[100svh] flex items-center justify-center lazy-bg bg-sticky-stable",
@@ -546,7 +546,7 @@ function App() {
     className: "text-base text-white/90 mb-4"
   }, "Canalizaci\xF3n a trav\xE9s de tus gu\xEDas y maestros. Acceder al Akasha es hacerte portador de la informaci\xF3n de tu alma para sanar, conocerte y alivianar tu andar."), /*#__PURE__*/React.createElement("a", {
     href: "https://wa.me/5491168040649?text=Hola,%20quiero%20un%20turno%20para%20abrir%20mis%20Registros%20Ak%C3%A1shicos",
-    className: "inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm mb-8"
+    className: "btn-boost inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm mb-8"
   }, "Reservar turno"), /*#__PURE__*/React.createElement("h2", {
     className: "new-rocker-regular title-white glow-violet text-5xl mb-4 mt-8"
   }, "Constelaciones \xC1lmicas"), /*#__PURE__*/React.createElement("p", {
@@ -555,7 +555,7 @@ function App() {
     className: "text-sm text-[#d980f9]/80 mb-4"
   }, "Encuentro presencial de 60 minutos en Espacio Cuerpo y Alma, ubicado en Vicente L\xF3pez."), /*#__PURE__*/React.createElement("a", {
     href: "#contacto",
-    className: "inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
+    className: "btn-boost inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm"
   }, "Consultar disponibilidad")), /*#__PURE__*/React.createElement("div", {
     className: "order-1 md:order-2"
   }, /*#__PURE__*/React.createElement("div", {
@@ -577,7 +577,8 @@ function App() {
     className: "pt-24 md:pt-32 pb-8 md:pb-16 lazy-bg bg-sticky-stable",
     "data-bg": ASSETS.cieloEspejo,
     style: {
-      backgroundPosition: 'center'
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-6xl px-4"
@@ -589,10 +590,12 @@ function App() {
     key: i
   }, e)))))), /*#__PURE__*/React.createElement("section", {
     id: "contacto",
-    className: "py-12 md:py-20 lazy-bg bg-sticky-stable",
+    className: "py-12 md:py-20 lazy-bg bg-sticky-stable bg-smaller bg-flip-mobile",
     "data-bg": ASSETS.cieloEspejo,
     style: {
-      backgroundPosition: 'center'
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      '--bg-img': `url(${ASSETS.cieloEspejo})`
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "mx-auto max-w-2xl px-4"
@@ -619,11 +622,17 @@ function App() {
     className: "flex items-center gap-5 text-sm"
   }, /*#__PURE__*/React.createElement("a", {
     href: "https://instagram.com/sermagia.tarot",
-    className: "text-white hover:text-[#f4dbff]"
-  }, "Instagram"), /*#__PURE__*/React.createElement("a", {
-    href: "#",
-    className: "text-white hover:text-[#f4dbff]"
-  }, "Pol\xEDtica de privacidad"))))));
+    className: "text-white hover:text-[#f4dbff] flex items-center gap-1"
+  }, /*#__PURE__*/React.createElement("svg", {
+    "aria-hidden": "true",
+    focusable: "false",
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "h-4 w-4",
+    viewBox: "0 0 24 24",
+    fill: "currentColor"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 3.25A4.75 4.75 0 1 1 7.25 13 4.75 4.75 0 0 1 12 8.25Zm0 2a2.75 2.75 0 1 0 2.75 2.75A2.75 2.75 0 0 0 12 10.25Zm4.5-3.5a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 16.5 6.75Z"
+  })), "Instagram"))))));
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(/*#__PURE__*/React.createElement(App, null));

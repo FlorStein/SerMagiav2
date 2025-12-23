@@ -97,7 +97,7 @@ const ServiceCard = React.memo(({ title, description, bgImage, link }) => (
       <div className="flex gap-3">
         <a 
           href={link}
-          className="inline-block rounded-full bg-white/20 backdrop-blur text-white px-5 py-2 text-sm hover:bg-white/30 transition border border-white/40"
+          className="btn-boost inline-block rounded-full bg-white/20 backdrop-blur text-white px-5 py-2 text-sm hover:bg-white/30 transition border border-white/40"
         >
           Más info
         </a>
@@ -105,7 +105,7 @@ const ServiceCard = React.memo(({ title, description, bgImage, link }) => (
           href="https://wa.me/5491168040649" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="inline-block rounded-full bg-[#5A32B5] text-white px-5 py-2 text-sm hover:opacity-90 transition"
+          className="btn-boost inline-block rounded-full bg-[#5A32B5] text-white px-5 py-2 text-sm hover:opacity-90 transition"
         >
           Reservar
         </a>
@@ -123,7 +123,7 @@ const LecturaCard = React.memo(({ t, d, precio, dur }) => (
       <p className="text-xs md:text-sm text-[#350352]/80 font-semibold">{d}</p>
     </div>
     <p className="text-lg font-bold text-[#350352]/70 absolute left-4 bottom-4">{precio} · {dur}</p>
-    <a href="https://wa.me/5491168040649" className="rounded-full border px-4 py-2 text-sm absolute right-4 bottom-4 font-bold">
+    <a href="https://wa.me/5491168040649" className="btn-boost rounded-full border px-4 py-2 text-sm absolute right-4 bottom-4 font-bold">
       Solicitar turnos
     </a>
   </article>
@@ -136,8 +136,8 @@ const EventoCard = React.memo(({ f, t, cupos }) => (
     <p className="new-rocker-regular title-white glow-violet text-xl">{t}</p>
     <p className="text-xs text-[#5c007d]/70 mb-4">{cupos}</p>
     <div className="flex gap-3">
-      <a href="https://wa.me/5491168040649" className="rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-sm">Reservar</a>
-      <a href="#contacto" className="rounded-full border px-4 py-2 text-sm">Consultar</a>
+      <a href="https://wa.me/5491168040649" className="btn-boost rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-sm">Reservar</a>
+      <a href="#contacto" className="btn-boost rounded-full border px-4 py-2 text-sm">Consultar</a>
     </div>
   </div>
 ));
@@ -176,13 +176,13 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="https://wa.me/5491168040649" className="rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-sm hover:opacity-90 transition">
+          <a href="https://wa.me/5491168040649" className="btn-vinito rounded-full text-sm px-4 py-2">
             Reservar
           </a>
         </nav>
         <button
           aria-label="Abrir menú"
-          className="md:hidden inline-flex items-center justify-center rounded-full border px-3 py-2"
+          className="md:hidden inline-flex items-center justify-center rounded-full border px-3 py-2 text-white"
           onClick={() => setOpen((v) => !v)}
         >
           <div className="space-y-1">
@@ -200,7 +200,7 @@ function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a href="https://wa.me/5491168040649" className="rounded-full bg-[#8a0bd2] text-white px-4 py-2 text-center text-sm" onClick={closeMenu}>
+            <a href="https://wa.me/5491168040649" className="btn-vinito rounded-full text-center text-sm px-4 py-2" onClick={closeMenu}>
               Reservar por WhatsApp
             </a>
           </div>
@@ -324,11 +324,11 @@ function ContactForm(){
         <button 
           type="submit" 
           disabled={status === "sending"}
-          className="rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn-boost rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm w-max disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {status === "sending" ? "Enviando..." : "Enviar"}
         </button>
-        <a href="https://wa.me/5491168040649" className="rounded-full border px-5 py-3 text-sm">WhatsApp</a>
+        <a href="https://wa.me/5491168040649" className="btn-boost rounded-full border px-5 py-3 text-sm">WhatsApp</a>
       </div>
     </form>
   );
@@ -355,19 +355,19 @@ function App(){
     <div className="min-h-screen">
       <Navbar/>
       {/* HERO: full viewport, background SVG, tarot card visible completa */}
-      <section id="inicio" className="pt-20 min-h-[100svh] relative flex items-center bg-sticky-stable bg-smaller" style={{backgroundImage:`url(${ASSETS.heroBg})`}}>
+      <section id="inicio" className="pt-20 min-h-[100svh] relative flex items-center bg-sticky-stable bg-repeat-10" style={{backgroundImage:`url(${ASSETS.heroBg})`}}>
         <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-10 items-center w-full">
           <div id="hero111" className="rounded-3xl bg-[#5A32B5]/20 backdrop-blur-2xl border border-[#5A32B5]/20 p-5 md:p-7 shadow-xl">
             <p className="uppercase tracking-[0.25em] text-xs text-[#d980f9] mb-3">Tarot · Akasha · Sanación</p>
             <h1 className="new-rocker-regular title-white glow-violet text-3xl md:text-4xl leading-tight mb-4">
               Acompañamiento integral para tu <span className="text-[#d980f9]">autoconocimiento</span>
             </h1>
-            <p className="mb-3 text-white font-bold leading-relaxed text-sm md:text-base">Soy Mica Frachi, tarotista y Ser en eterna búsqueda y construcción. Hace más de siete años que acompaño procesos de sanación y autoconocimiento a través del Tarot, los Registros Akáshicos y otras mancias.</p>
-            <p className="mb-3 text-white leading-relaxed text-sm md:text-base">Si bien no me gustan las etiquetas y los rótulos, trabajo hace muchos años con herramientas que me permiten ser guía en tu camino. No existen las recetas que apliquen a todos los seres humanos. No utilizo la misma dinámica para vos que para otrx. No recorto, moldeo, o aprieto tu proceso para que encaje con el de nadie más. Por eso, si elegís fusionar tu energía con la mía vamos a crear tu propio método, uno que sea transpersonal, revolucionario y te regale tu mejor versión.</p>
-            <p className="mb-4 text-white font-bold italic text-sm md:text-base">Te espero del otro lado de la decisión.</p>
+            <p className="mb-3 text-white font-bold leading-relaxed text-base md:text-lg">Soy Mica Frachi, tarotista y Ser en eterna búsqueda y construcción. Hace más de siete años que acompaño procesos de sanación y autoconocimiento a través del Tarot, los Registros Akáshicos y otras mancias.</p>
+            <p className="mb-3 text-white leading-relaxed text-base md:text-lg">Si bien no me gustan las etiquetas y los rótulos, trabajo hace muchos años con herramientas que me permiten ser guía en tu camino. No existen las recetas que apliquen a todos los seres humanos. No utilizo la misma dinámica para vos que para otrx. No recorto, moldeo, o aprieto tu proceso para que encaje con el de nadie más. Por eso, si elegís fusionar tu energía con la mía vamos a crear tu propio método, uno que sea transpersonal, revolucionario y te regale tu mejor versión.</p>
+            <p className="mb-4 text-white font-bold italic text-base md:text-lg">Te espero del otro lado de la decisión.</p>
             <div className="flex flex-wrap gap-3">
-              <a href="#servicios" className="rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm">Ver servicios</a>
-              <a href="https://wa.me/5491168040649" className="rounded-full border border-[#d980f9] text-[#d980f9] px-5 py-3 text-sm">Solicitar turnos</a>
+              <a href="#servicios" className="btn-boost rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm">Ver servicios</a>
+              <a href="https://wa.me/5491168040649" className="btn-boost rounded-full border border-[#d980f9] text-white px-5 py-3 text-sm">Solicitar turnos</a>
             </div>
           </div>
           <div className="relative">
@@ -399,7 +399,7 @@ function App(){
       </div>
 
       {/* SERVICIOS */}
-      <section id="servicios" className="py-12 md:py-20 bg-sticky-stable bg-smaller" style={{backgroundImage:`url(${ASSETS.backgroundTarotLila})`}}>
+      <section id="servicios" className="py-12 md:py-20 bg-sticky-stable bg-repeat-10" style={{backgroundImage:`url(${ASSETS.backgroundTarotLila})`}}>
   <div className="mx-auto max-w-6xl px-4">
     <h2 className="new-rocker-regular text-[#ffffff] text-[2.5rem] md:text-[4rem] mb-8">
   Servicios
@@ -442,7 +442,7 @@ function App(){
               ))}
             </div>
             <div className="flex justify-center">
-              <a href="https://wa.me/5491168040649?text=Hola!%20quisiera%20un%20turno%20para%20%22el%20pack%22" className="rounded-full bg-[#8a0bd2] text-white px-6 py-3 text-base font-medium hover:bg-[#7209b3] transition-colors">
+              <a href="https://wa.me/5491168040649?text=Hola!%20quisiera%20un%20turno%20para%20%22el%20pack%22" className="btn-boost rounded-full bg-[#8a0bd2] text-white px-6 py-3 text-base font-medium hover:bg-[#7209b3] transition-colors">
                 Solicitar turno para El Pack
               </a>
             </div>
@@ -475,7 +475,7 @@ function App(){
             <p className="text-base text-white/90 mb-4">
               Canalización a través de tus guías y maestros. Acceder al Akasha es hacerte portador de la información de tu alma para sanar, conocerte y alivianar tu andar.
             </p>
-            <a href="https://wa.me/5491168040649?text=Hola,%20quiero%20un%20turno%20para%20abrir%20mis%20Registros%20Ak%C3%A1shicos" className="inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm mb-8">Reservar turno</a>
+            <a href="https://wa.me/5491168040649?text=Hola,%20quiero%20un%20turno%20para%20abrir%20mis%20Registros%20Ak%C3%A1shicos" className="btn-boost inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm mb-8">Reservar turno</a>
             
             <h2 className="new-rocker-regular title-white glow-violet text-5xl mb-4 mt-8">Constelaciones Álmicas</h2>
             <p className="text-base text-white/90 mb-2">
@@ -484,7 +484,7 @@ function App(){
             <p className="text-sm text-[#d980f9]/80 mb-4">
               Encuentro presencial de 60 minutos en Espacio Cuerpo y Alma, ubicado en Vicente López.
             </p>
-            <a href="#contacto" className="inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm">Consultar disponibilidad</a>
+            <a href="#contacto" className="btn-boost inline-block rounded-full bg-[#8a0bd2] text-white px-5 py-3 text-sm">Consultar disponibilidad</a>
           </div>
           <div className="order-1 md:order-2">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-sm flex items-center justify-center bg-black/5 relative">
@@ -507,7 +507,7 @@ function App(){
         id="agenda" 
         className="pt-24 md:pt-32 pb-8 md:pb-16 lazy-bg bg-sticky-stable" 
         data-bg={ASSETS.cieloEspejo}
-        style={{backgroundPosition:'center'}}
+        style={{backgroundPosition:'center', backgroundRepeat:'no-repeat'}}
       >
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="new-rocker-regular title-white glow-violet text-5xl mb-6 text-center">Próximas fechas</h2>
@@ -522,9 +522,9 @@ function App(){
       {/* CONTACTO */}
       <section 
         id="contacto" 
-        className="py-12 md:py-20 lazy-bg bg-sticky-stable" 
+        className="py-12 md:py-20 lazy-bg bg-sticky-stable bg-smaller bg-flip-mobile" 
         data-bg={ASSETS.cieloEspejo}
-        style={{backgroundPosition:'center'}}
+        style={{backgroundPosition:'center', backgroundRepeat:'no-repeat', '--bg-img': `url(${ASSETS.cieloEspejo})`}}
       >
         <div className="mx-auto max-w-2xl px-4">
           <div className="rounded-3xl border bg-white/45 backdrop-blur p-8 md:p-10 shadow-sm">
@@ -542,8 +542,12 @@ function App(){
             <p className="text-sm text-white/90">© {new Date().getFullYear()} Ser Magia Tarot</p>
             <a href="https://studionolaatelier.com/" target="_blank" rel="noopener noreferrer" className="studio-nola-link inline-block text-sm text-white/80 transition-all duration-300">Hecho con 💜 por Studio Nola Atelier</a>
             <div className="flex items-center gap-5 text-sm">
-              <a href="https://instagram.com/sermagia.tarot" className="text-white hover:text-[#f4dbff]">Instagram</a>
-              <a href="#" className="text-white hover:text-[#f4dbff]">Política de privacidad</a>
+              <a href="https://instagram.com/sermagia.tarot" className="text-white hover:text-[#f4dbff] flex items-center gap-1">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 3.25A4.75 4.75 0 1 1 7.25 13 4.75 4.75 0 0 1 12 8.25Zm0 2a2.75 2.75 0 1 0 2.75 2.75A2.75 2.75 0 0 0 12 10.25Zm4.5-3.5a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 16.5 6.75Z"/>
+                </svg>
+                Instagram
+              </a>
             </div>
           </div>
         </div>
